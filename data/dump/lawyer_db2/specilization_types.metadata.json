@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"lawyer_db2.specilization_types"}],"uuid":"f8dcbc89ccd94987bf9d4b72e177579d"}

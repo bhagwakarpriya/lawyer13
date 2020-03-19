@@ -1,0 +1,25 @@
+section#chatbot .modal-content{
+    z-index: 999999;
+    shape-outside: radial-gradient();
+}
+
+section#chatbot {	
+    position: sticky;    
+    min-height: 80vh;
+    transition: height 9999s;
+    z-index: 999999;
+    bottom: 5px;
+    display: block;
+    width:450px;
+    float:right;
+    margin-right: 45px;
+}
+.vertical-align {
+	position: absolute;
+	bottom: 8px;
+	right: 10px;	
+}
+
+div.options {
+	white-space : unset !important;
+}

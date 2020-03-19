@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"lawyer_db2.queary"}],"uuid":"3915debd147140069bac3bc585b5f3be"}
