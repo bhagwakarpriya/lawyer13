@@ -7,5 +7,5 @@ const routes = express.Router();
 // controller
 const CASEDETAIL = require('../controllers/case_detail.controller')
 routes.post('/add',[],CASEDETAIL.add);
-
+routes.get('/:id',[],CASEDETAIL.casedetail);
 module.exports = routes;

@@ -78,6 +78,8 @@ class Lawyer extends CI_Controller {
     public function updateProfile() {
         if ($this->input->post()) {
             $data = $this->input->post();
+            
+            $data = $this->input->post();
             if (isset($_FILES['filename']['name'])) {
                 if (!is_dir('./backend/images/lawyers')) {
                     mkdir('./backend/images/lawyers', 0777, true);
@@ -103,7 +105,7 @@ class Lawyer extends CI_Controller {
                 $this->upload->do_upload('idimage');
             }
             $api_data = array(
-                "id" => $_SESSION['data']['id'],
+                "lawyer_id" => $_SESSION['data']['id'],
                 "lawyeridimage" => $lawyeridimage,
                 'edulist' => $data['edulist'],
                 'aboutme' => $data['aboutme'],
@@ -127,8 +129,19 @@ class Lawyer extends CI_Controller {
                 'otherfees' => $data['otherfees'],
                 'otherremarks' => $data['otherremarks'],
             );
-            $respon = execute_data('lawyer/meta/' . '$_SESSION["data"]["id"]', json_encode($api_data), 'POST');
-            redirect(base_url() . 'home');
+            $respon = execute_data('lawyer/' . $_SESSION["data"]["id"], json_encode($api_data), 'POST');
+             if ($respon) {
+                $return['status'] = 'success';
+                $return['message'] = 'Profile Successfully! updated';
+                $data['result'] = true;
+                $return['redirect'] = base_url();
+            } else {
+                $data['result'] = false;
+                $return['status'] = 'error';
+                $return['message'] = 'Something worng.';
+            }
+            echo json_encode($return);
+            exit();
         }
         $_SESSION['current_page'] = 'Lawyer Edit profile';
         $this->load->view('updateprofile');

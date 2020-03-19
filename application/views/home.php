@@ -96,7 +96,8 @@ $this->load->view('header');
                                  data-splitin="none" 
                                  data-splitout="none" 
                                  data-responsive_offset="on"
-                                 style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-dark btn-flat btn-theme-colored pl-20 pr-20 mt-sm-30" href="#">Submit your matter</a> </div>
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                                <a class="btn btn-dark btn-flat btn-theme-colored pl-20 pr-20 mt-sm-30" href="#SubmitYourMatter">Submit Your Matter</a> </div>
 
                         </li>
 
@@ -439,9 +440,8 @@ $this->load->view('header');
         </div>
     </section>
     <?php if (trim($_SESSION['usertype']) != 'lawyer') { ?>    
-
         <!-- Section: Case -->
-        <section class="bg-no-repeat bg-img-cover">
+        <section id="SubmitYourMatter" class="bg-no-repeat bg-img-cover">
             <div class="container pb-0">
                 <div class="row">
                     <div class="col-md-5 col-md-offset"> <img class="mt-10" src="<?php echo base_url(); ?>fassets/images/about/1.png" alt=""> </div>

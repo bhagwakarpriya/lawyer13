@@ -94,7 +94,8 @@
                                     ?>    
                                     <li><a href="#">Profile</a>
                                         <ul class="dropdown">
-                                            <li><a href="<?php echo base_url(); ?>Client/editProfile">Edit Profile</a></li>
+                                            <li><a href="<?php echo base_url(); ?>Client/editProfile">Edit Profile</a></li>                                            
+                                            <li><a href="<?php echo base_url(); ?>Client/cases">MY Case</a></li>
                                             <li><a href="<?php echo base_url(); ?>Home/logout">Logout</a></li>
                                         </ul>
                                     </li>
