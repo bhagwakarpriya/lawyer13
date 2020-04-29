@@ -30,6 +30,8 @@
                             <button class="btn btn-danger btn-xs">
                                 <a href="<?php echo base_url('admin/lawyer/delete/' . $l['_id']) ?>" <i class="fa fa-trash-o "></i></a>
                             </button>
+                             <a href="<?php echo base_url('admin/Categories/addSubCategories/' . $l['_id'].'/'.$l['tag']) ?>">Add subcategories</a>
+
                         </td>
                         <?php
                         echo "</tr>";

@@ -78,7 +78,6 @@ class Lawyer extends CI_Controller {
     public function updateProfile() {
         if ($this->input->post()) {
             $data = $this->input->post();
-            
             $data = $this->input->post();
             if (isset($_FILES['filename']['name'])) {
                 if (!is_dir('./backend/images/lawyers')) {
@@ -129,8 +128,11 @@ class Lawyer extends CI_Controller {
                 'otherfees' => $data['otherfees'],
                 'otherremarks' => $data['otherremarks'],
             );
+            echo "<pre>";
+            print_r($api_data);
+            die;
             $respon = execute_data('lawyer/' . $_SESSION["data"]["id"], json_encode($api_data), 'POST');
-             if ($respon) {
+            if ($respon) {
                 $return['status'] = 'success';
                 $return['message'] = 'Profile Successfully! updated';
                 $data['result'] = true;
@@ -143,8 +145,19 @@ class Lawyer extends CI_Controller {
             echo json_encode($return);
             exit();
         }
+        $data['js'] = array(
+            'comman_function.js',
+            'ajaxfileupload.js',
+            'jquery.form.min.js',
+            'toastr/toastr.min.js',
+        );
+        $data['css'] = array(
+            'toastr/toastr.min.css'
+        );
+        $data['init'] = array(
+        );
         $_SESSION['current_page'] = 'Lawyer Edit profile';
-        $this->load->view('updateprofile');
+        $this->load->view('updateprofile', $data);
     }
 
 }

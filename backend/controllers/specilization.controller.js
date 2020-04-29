@@ -15,6 +15,7 @@ exports.create = async (req, res) => {
     return Respond.success('specilization created successfully', specilization.toJSON(), res);
 };
 
+
 exports.multi_create = async (req, res) => {    
     Specilization.insertMany(req.body.tags, (err, sps) => {
         if(!err){

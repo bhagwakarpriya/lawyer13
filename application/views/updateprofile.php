@@ -19,7 +19,7 @@ $this->load->view('header');
                                     <div class="bg-lightest border-1px p-30 mb-0">
                                         <h4 class="text-theme-colored mt-0 pt-5">Please complete your profile</h4>
                                         <hr>
-                                        <form id="finalprofile" name="form" action="<?php echo base_url() . 'home/finalProfile' ?>" method="post" enctype="multipart/form-data">
+                                        <form id="finalprofile" name="form" action="<?php echo base_url() . 'Lawyer/updateProfile' ?>" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="form_attachment">Profile Picture</label>
                                                 <input id="filename" name="filename" class="file" type="file" multiple data-show-upload="false" data-show-caption="true" tabindex="1">

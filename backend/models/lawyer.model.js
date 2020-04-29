@@ -15,6 +15,10 @@ var LawyerSchema = mongoose.Schema({
     imagepath:{type:String,default:""},
     is_delete:{type:Boolean,default:false},
     is_active:{type:Boolean,default:true},
+    lawyermeta : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'LawyerSchema'
+    },
     created: {
         type: Date,
         default: Date.now
@@ -44,7 +48,6 @@ LawyerSchema
         is_active:this.is_active,
        }
 });
-
 
 var Lawyer = mongoose.model("Lawyer", LawyerSchema,'lawyers');
 exports.Lawyer = Lawyer;

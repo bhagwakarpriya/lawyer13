@@ -7,7 +7,7 @@ const hash = require('object-hash');
 
 exports.add = async (req, res) => {
        let data = {
-        id:req.body.id,
+        lawyer_id:req.body.id,
         lawyeridimage:req.body.lawyeridimage,
         edulist: req.body.edulist,
         aboutme: req.body.aboutme,
@@ -36,6 +36,6 @@ exports.add = async (req, res) => {
     return Respond.success('profile edited successfully', lawyer_meta_resp.details, res);
 };
 
-let findByLawyerId = async (id) => {
+// let findByLawyerId = async (id) => {
 
-};
+// };

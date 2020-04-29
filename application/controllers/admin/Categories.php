@@ -76,6 +76,63 @@ class Categories extends CI_Controller {
         $this->load->view('admin/categories/add', $data);
     }
 
+    public function addSubCategories($id,$name) {
+        $response = execute_data('specilization/', '', 'GET');
+        if (!is_array($response)) {
+            echo "server not response";
+        }
+        $data['id']=$id;
+        $data['name']=$name;
+        $data['specilization'] = $response['payload'];
+        if ($this->input->post()) {
+            $data = $this->input->post();
+            $categorieImage = "";
+            if (isset($_FILES['image']['name'])) {
+                if (!is_dir('./backend/images/categories')) {
+                    mkdir('./backend/images/categories', 0777, true);
+                }
+                $image_file = pathinfo($_FILES['image']['name']);
+                $categorieImage = time() . '.' . $image_file['extension'];
+                $config['upload_path'] = './backend/images/categories';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['file_name'] = $categorieImage;
+                $this->upload->initialize($config);
+                $this->upload->do_upload('image');
+            }
+            $api_data = array(
+                'tag' => $data['categories_name'],
+                'image' => $categorieImage,
+            );
+            $respo = execute_data('specilization/create', json_encode($api_data), 'POST');
+            if ($respo) {
+                $json_response['status'] = 'success';
+                $json_response['message'] = 'Category Successfully added.';
+                $json_response['redirect'] = base_url() . 'admin/Categories';
+            } else {
+                $json_response['status'] = 'error';
+                $json_response['message'] = 'Something goes to wrong.';
+            }
+            echo json_encode($json_response);
+            exit();
+        }
+        $data['js'] = array(
+            'comman_function.js',
+            'ajaxfileupload.js',
+            'jquery.form.min.js',
+            'toastr/toastr.min.js',
+            'validate/jquery.validate.min.js',
+            'categories.js',
+        );
+        $data['css'] = array(
+            'toastr/toastr.min.css'
+        );
+        $data['init'] = array(
+            'Categories.addsubcategories()',
+        );
+
+        $this->load->view('admin/categories/addSubCategories', $data);
+    }
+
     public function registration() {
 //        $_SESSION['current_page'] = 'registration';
         if ($this->input->post()) {

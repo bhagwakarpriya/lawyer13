@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
 var LawyerMetaSchema = mongoose.Schema({
-
-    id: mongoose.Schema.Types.ObjectId,
+    lawyer_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'lawyers'
+    },
     lawyeridimage:{type:String,default:""},
     edulist: {type: String, required: true},
     aboutme: {type: String, required: true},
@@ -24,10 +26,7 @@ var LawyerMetaSchema = mongoose.Schema({
     servicesname: {type: String, required: true}, 
     otherfees: {type: Number, required: true},
     otherremarks: {type: String, required: true},
-    lawyer : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'Lawyer'
-    },
+  
     created: { 
          type: Date,
          default: Date.now

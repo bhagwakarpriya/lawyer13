@@ -32,13 +32,14 @@ exports.register = async (req, res) => {
 
 exports.select = async (req, res) => {
 
-    let lawyers = await Lawyer.find();
+    let lawyers = await Lawyer.find({
+        // is_active:true,node
+        is_delete:false
+    });
     console.log(lawyers);
-
     if (!lawyers) {
         return Respond.notFound("no data found", false, res);
     }
-
     return Respond.success("Lawyer found", lawyers, res);
 
     // dbo.collection("customers").find({}).toArray(function (err, result) {
@@ -52,20 +53,20 @@ exports.selectbyid = async (req, res) => {
     if (!req.params.id) {
         return Respond.badRequest("Missing Lawyer id", [], res);
     }
-
-    let lawyer = await Lawyer.findById(req.params.id).populate()
+    
+    let lawyer = await Lawyer.findById(req.params.id).populate("lawyer_meta")
     if (!lawyer) {
         return Respond.notFound("Lawyer not found or invalid id", [], res);
     }
 
+    console.log(lawyer);
 
 
-
-    // return Respond.success("Lawyer found", lawyers, res);
+    return Respond.success("Lawyer found", lawyer, res);
 
     // dbo.collection("customers").find({}).toArray(function (err, result) {
     // if (err) throw err;
-    // console.log(result);
+    
 
 };
 
@@ -116,15 +117,14 @@ exports.edit_profile = async (req, res) => {
     if (!lawyer) {
         return Respond.notFound("Lawyer not found or invalid id", [], res);
     }
-
     let updata_lawyer = {
         imagepath: req.body.file
     };
-
     lawyer = await Lawyer.findByIdAndUpdate(lawyer._id, { $set: updata_lawyer }, (err, result) => {
         if (!!err) {
             return Respond.exception('Something want wrong :', err, res);
         }
+      
         console.log('result.is_active:', result.is_active);
         return Respond.success("Status updated", result.details, res);
     });

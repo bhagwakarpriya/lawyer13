@@ -14,6 +14,7 @@
     <tbody>
         <?php
         foreach ($lawyers as $l) {
+            
             echo "<tr>";
             echo "<td>" . $l['name']['first_name'] . " " . $l['name']['last_name'] . "</td>";
             echo "<td>" . $l['email'] . "</td>";
