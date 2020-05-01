@@ -1,19 +1,16 @@
-var Activedeactive = function () {
-    var lawyerinit = function () {
-
-        $('body').on('click', '.deactivelawyer', function () {
-
+var Client = function () {
+    var Clientinit = function () {
+        $('body').on('click', '.deactiveclient', function () {
             var id = $(this).data('id');
             setTimeout(function () {
                 $('.yes-sure-deactive:visible').attr('data-id', id);
             }, 500);
         });
-
         $('body').on('click', '.yes-sure-deactive', function () {
             var id = $(this).attr('data-id');
             $.ajax({
                 type: "POST",
-                url: baseurl + "admin/Lawyer/deactivelawyer",
+                url: baseurl + "admin/Client/deactiveClient",
                 data: {id: id},
                 success: function (data) {
                     handleAjaxResponse(data);
@@ -22,7 +19,7 @@ var Activedeactive = function () {
         });
 
 //        Active 
-        $('body').on('click', '.activelawyer', function () {
+        $('body').on('click', '.activeclient', function () {
             var id = $(this).data('id');
             setTimeout(function () {
                 $('.yes-sure-active:visible').attr('data-id', id);
@@ -32,26 +29,26 @@ var Activedeactive = function () {
             var id = $(this).attr('data-id');
             $.ajax({
                 type: "POST",
-                url: baseurl + "admin/Lawyer/activelawyer",
+                url: baseurl + "admin/Client/activeClient",
                 data: {id: id},
                 success: function (data) {
                     handleAjaxResponse(data);
                 }
             });
         });
-
+   
         $('body').on('click', '.delete', function () {
             var id = $(this).data('id');
             setTimeout(function () {
-                $('.yes-sure-lawyer:visible').attr('data-id', id);
+                $('.yes-sure-client:visible').attr('data-id', id);
             }, 500);
         });
 
-        $('body').on('click', '.yes-sure-lawyer', function () {
+        $('body').on('click', '.yes-sure-client', function () {
             var id = $(this).attr('data-id');
             $.ajax({
                 type: "POST",
-                url: baseurl + "admin/Lawyer/deleteLawyer",
+                url: baseurl + "admin/Client/deleteClient",
                 data: {id: id},
                 success: function (data) {
                     handleAjaxResponse(data);
@@ -61,8 +58,8 @@ var Activedeactive = function () {
 
     }
     return{
-        lawyer: function () {
-            lawyerinit();
+        client: function () {
+            Clientinit();
         },
     };
 }();

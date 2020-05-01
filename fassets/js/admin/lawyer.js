@@ -1,4 +1,4 @@
-var Activedeactive = function () {
+var Lawyer = function () {
     var lawyerinit = function () {
 
         $('body').on('click', '.deactivelawyer', function () {
