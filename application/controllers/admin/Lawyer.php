@@ -17,13 +17,13 @@ class Lawyer extends CI_Controller {
             'jquery.form.min.js',
             'toastr/toastr.min.js',
 //            'validate/jquery.validate.min.js',
-            'activedeactive.js',
+            'admin/lawyer.js',
         );
         $data['css'] = array(
             'toastr/toastr.min.css'
         );
         $data['init'] = array(
-            "Activedeactive.lawyer()",
+            "Lawyer.lawyer()",
         );
         $this->load->view('admin/lawyer_list', $data);
     }

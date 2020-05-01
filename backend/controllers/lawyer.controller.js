@@ -107,7 +107,7 @@ exports.activedeactive = async (req, res) => {
         console.log('result.is_active:', result.is_active);
         return Respond.success("Status updated", [], res);
     });
-}
+} 
 
 exports.edit_profile = async (req, res) => {
     if (!req.params.id) {
@@ -150,13 +150,22 @@ exports.forgetpwd = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-    
-    lawyer = await Lawyer.findByIdAndDelete(req.params.id, function (err, result)  {
-        if(!!err) {
+    let cond = {}    
+    if (!req.params.id) {
+        return Respond.badRequest("Missing lawyer id", [], res);
+    }
+    let lawyer = await Lawyer.findById(req.params.id);
+    if (!lawyer) {
+        return Respond.notFound("Lawyer not found or invalid id", [], res);
+    }
+    lawyer = await Lawyer.findByIdAndUpdate(lawyer._id, {$set:{is_delete:lawyer.is_delete === false?true:true},}, (err, result) => {
+        if (!!err) {
             return Respond.exception('Something want wrong :', err, res);
         }
-            return Respond.success("Lawyer deleted", [], res);
+        console.log('result.is_delete:',result.is_delete);
+        return Respond.success("Status updated", result.details, res);
     });
+
 };
 
 let findByLawyerId = async (id) => {

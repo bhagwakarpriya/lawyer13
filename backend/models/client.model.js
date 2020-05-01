@@ -4,16 +4,17 @@ var ClientSchema = mongoose.Schema({
         first_name : {type: String, required: true},
         last_name: {type: String, required: true}
     },
-    
     email: {type: String, required: true},
     phone_no: {type: Number, required: false},
     city: {type: String, required: true},
     gender: {type: String, required: true},
     password: {type: String, required: true},
+    is_delete:{type:Boolean,default:false},
+    is_active:{type:Boolean,default:true},
     created: { 
         type: Date,
         default: Date.now
-    }
+    }  
 });
 
 ClientSchema
@@ -35,7 +36,9 @@ ClientSchema
         email: this.email,
         phone_no: this.phone_no,
         city: this.city,
-        gender: this.gender
+        gender: this.gender,
+        is_delete:this.is_delete,
+        is_active:this.is_active,
     }
 });
 

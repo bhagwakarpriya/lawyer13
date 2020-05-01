@@ -6,12 +6,10 @@ const Respond = require('../helpers/resHelper');
 const hash = require('object-hash');
 
 exports.register = async (req, res) => {
-
     let cypherdata = {
         email: req.body.email,
         password: req.body.password
     }
-
     let data = {
         name: {
             first_name: req.body.name.first_name,
@@ -87,22 +85,37 @@ exports.forgetpwd = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-    let cond = {}
-    
+    let cond = {}    
     if (!req.params.id) {
         return Respond.badRequest("Missing client id", [], res);
     }
     let client = await Client.findById(req.params.id);
-
     if (!client) {
         return Respond.notFound("Client not found or invalid id", [], res);
     }
-    
-    client = await Client.findByIdAndUpdate(client._id, {$set:{is_active:client.is_active === true?false:true},}, (err, result) => {
+    client = await Client.findByIdAndUpdate(client._id, {$set:{is_delete:client.is_delete === false?true:true},}, (err, result) => {
         if (!!err) {
             return Respond.exception('Something want wrong :', err, res);
         }
-        console.log('result.is_active:',result.is_active);
+        console.log('result.is_delete:',result.is_delete);
         return Respond.success("Status updated", result.details, res);
     });
 };
+
+exports.activedeactive = async (req, res) => {
+    if (!req.params.id) {
+        return Respond.badRequest("Missing Lawyer id", [], res);
+    }
+    let client = await Client.findById(req.params.id);
+    if (!client) {
+        return Respond.notFound("Client not found or invalid id", [], res);
+    }
+    console.log('client.is_active:', client.is_active);
+    client = await Client.findByIdAndUpdate(client._id, { $set: { is_active: client.is_active === true ? false : true }, }, (err, result) => {
+        if (!!err) {
+            return Respond.exception('Something want wrong :', err, res);
+        }
+        // console.log('result.is_active:', result.is_active);
+        return Respond.success("Status updated", [], res);
+    });
+}
