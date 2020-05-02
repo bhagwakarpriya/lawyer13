@@ -6,6 +6,7 @@ const routes = express.Router();
 
 // controller
 const LAWYER_META = require('../controllers/lawyer_meta.controller')
+
 // routes.post('/edit',[],LAWYER_META.edit);
 
 module.exports = routes;
