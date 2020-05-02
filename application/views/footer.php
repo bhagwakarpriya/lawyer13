@@ -197,76 +197,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>fassets/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>fassets/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>fassets/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
-<script type="text/javascript">
-                        function getEducations(){
-                        return $("#ui_edu li").map(function() {
-                        return $(this).data("edu");
-                        }).get();
-                        }
-                        var count = 0;
-                        $('body').on("click", ".addEdcution", function () {
-                        var institutename = $("#institutename").val();
-                        var education = $("#education_select").val();
-                        var edu_inst = education + "|" + institutename;
-                        var html = "<lable class='strokegap-icon strokegap-icon-House'>" + education + "</lable> - " +
-                                "<lable class='strokegap-icon strokegap-icon-House'>" + institutename + "</lable>" +
-                                "<a href='javascript:void(0);' class='clearitem' onclick='javascipt:$(this).parent().remove();'>x</a>";
-                        var edu = $('<li></li>').html(html).data('edu', {education:education, institutename:institutename});
-                        $('#ui_edu').append(edu);
-                        var curr_edu_list = $("#edulist").val().split(",");
-                        curr_edu_list.push(edu_inst);
-                        $("#edulist").val(curr_edu_list.join())
-                        });
-                        $('body').on("click", ".addExpertiseInButton", function () {
-                        var expertise_select = $("#expertise_select").val();
-                        var experienceyear = $("#experienceyear").val();
-                        var numberOfCase = $("#numberOfCase").val();
-                        var exp_inst = expertise_select + "|" + experienceyear + "|" + numberOfCase;
-                        var html = "<lable class='strokegap-icon strokegap-icon-House'>" + expertise_select + "</lable><br>" +
-                                "<lable class='strokegap-icon strokegap-icon-House'>" + experienceyear + "</lable><br>" +
-                                "<lable class='strokegap-icon strokegap-icon-House'>" + numberOfCase + "</lable><br>";
-                        $(".primaryexp").prepend(html);
-                        var curr_edu_list = $("#explist").val().split(",");
-                        curr_edu_list.push(exp_inst);
-                        $("#explist").val(curr_edu_list.join())
-                        });
-                        $('body').on("click", ".addExpertiseInButton", function(){
-                        var experienceyear = $("#experienceyear")
-                                var expertise_select = $("#expertise_select").val();
-                        $(".primaryexp").prepend(html);
-                        });
-                        function yearsDiff(d1, d2) {
-                        let date1 = new Date(d1);
-                        let date2 = new Date(d2);
-                        let yearsDiff = date2.getFullYear() - date1.getFullYear();
-                        return yearsDiff;
-                        }
-                        $('body').on("change", ".month_select", function(){
 
-                        var year = $("#year_select").val();
-                        var month = $("#month_select").val();
-                        var d = new Date();
-                        var cy = d.getFullYear();
-                        var cm = d.getMonth();
-                        if (year != '' && month != ""){
-                        let d1 = new Date(year, month, 01).getTime();
-                        let d2 = new Date(cy, cm, 25).getTime();
-                        / document.write(d2); /
-                                let date1 = new Date(d1);
-                        let date2 = new Date(d2);
-                        let years = yearsDiff(d1, d2);
-                        let months = (years * 12) + (date2.getMonth() - date1.getMonth());
-                        let y = months / 12;
-                        let m = months % 12;
-                        $("#experienceText").val(Math.floor(y) + " Year " + m + " Months ");
-                        //  alert("y"+y+"m"+m);
-
-                        } else{
-                        $("#year_select").val('');
-                        $("#month_select").val('');
-                        }
-                        });
-                    </script>
 <?php
 if (!empty($js)) {
     foreach ($js as $value) {

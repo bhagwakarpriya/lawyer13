@@ -1,7 +1,8 @@
 const _ = require('lodash');
 const { Lawyer } = require('../models/lawyer.model')
 const { LawyerMeta } = require('../models/lawyer_meta.model')
-
+const { LawyerMetaCont} = require('./lawyer_meta.controller')
+// const LAWYER_META = require('../controllers/lawyer_meta.controller')
 const Respond = require('../helpers/resHelper');
 const hash = require('object-hash');
 
@@ -49,19 +50,14 @@ exports.select = async (req, res) => {
 };
 
 exports.selectbyid = async (req, res) => {
-
     if (!req.params.id) {
         return Respond.badRequest("Missing Lawyer id", [], res);
     }
-    
-    let lawyer = await Lawyer.findById(req.params.id).populate("lawyer_meta")
+    let lawyer = await Lawyer.findById(req.params.id).populate('LawyerMeta')
     if (!lawyer) {
         return Respond.notFound("Lawyer not found or invalid id", [], res);
     }
-
     console.log(lawyer);
-
-
     return Respond.success("Lawyer found", lawyer, res);
 
     // dbo.collection("customers").find({}).toArray(function (err, result) {
@@ -118,13 +114,14 @@ exports.edit_profile = async (req, res) => {
         return Respond.notFound("Lawyer not found or invalid id", [], res);
     }
     let updata_lawyer = {
-        imagepath: req.body.file
+        imagepath: req.body.filename
     };
     lawyer = await Lawyer.findByIdAndUpdate(lawyer._id, { $set: updata_lawyer }, (err, result) => {
         if (!!err) {
             return Respond.exception('Something want wrong :', err, res);
         }
-      
+    //let lawyer_meta=await 
+        add_lawyer_meta(lawyer,req,res);
         console.log('result.is_active:', result.is_active);
         return Respond.success("Status updated", result.details, res);
     });
@@ -170,4 +167,58 @@ exports.delete = async (req, res) => {
 
 let findByLawyerId = async (id) => {
 
+};
+
+let add_lawyer_meta = async(lawyer,req,res)=> {
+    // add code here to find lawyer menta by req.body.id 
+    // let lawyer_meta=await LawyerMeta.findById(req.body.id);
+    // Model.find({ 'some.value': 5 }, function (err, docs) {
+    //     // docs is an array
+    //   }); // if
+    let data = {
+        lawyer_id:lawyer._id,
+        lawyeridimage:req.body.lawyeridimage,
+        edulist: req.body.edulist,
+        aboutme: req.body.aboutme,
+        barcoucilno: req.body.barcoucilno,
+        statebarcouncil_select: req.body.statebarcouncil_select,
+        experienceText: req.body.experienceText,
+        designation: req.body.designation,
+        explist: req.body.explist,
+        secondaryexpertise: req.body.secondaryexpertise,
+        phonefees: req.body.phonefees,
+        phonefeesremarks: req.body.phonefeesremarks,
+        meetingfees: req.body.meetingfees,
+        meetingfeesremarks: req.body. meetingfeesremarks,
+        reviewdocfees: req.body.reviewdocfees,
+        reviewdocremarks: req.body.reviewdocremarks, 
+        fillcaseincourtfees: req.body.fillcaseincourtfees,  
+        fillcaseincourtremarks:req.body.fillcaseincourtremarks,
+        hearingfees: req.body.hearingfees,
+        hearingfeesremarks: req.body.hearingfeesremarks, 
+        servicesname: req.body.servicesname, 
+        otherfees: req.body.otherfees, 
+        otherremarks: req.body.otherremarks,       
+    };
+    
+    let lawyer_meta = await LawyerMeta.findOne({
+        lawyer_id: lawyer._id
+    });
+    if (!lawyer_meta) {
+        //need to create and return
+        
+        let lawyer_meta = new LawyerMeta(data);
+        lawyer_meta_resp = await lawyer_meta.save();
+        return Respond.success("Lawyer meta added", [], res);
+    }
+    //need to update and return
+    LawyerMeta.findOneAndUpdate({ "_id": lawyer_meta._id }, { "$set": data}).exec(function(err, lawyer_meta){
+        if(err) {
+            console.log(err);
+            return Respond.exception("Issue in updating lawyer mata", [], res);
+        }
+        return Respond.success("Lawyer meta updated", lawyer_meta.details, res);
+     });
+
+//  return Respond.success('profile edited successfully', lawyer_meta_resp.details, res);
 };

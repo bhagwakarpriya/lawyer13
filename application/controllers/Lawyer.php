@@ -78,7 +78,6 @@ class Lawyer extends CI_Controller {
     public function updateProfile() {
         if ($this->input->post()) {
             $data = $this->input->post();
-            $data = $this->input->post();
             if (isset($_FILES['filename']['name'])) {
                 if (!is_dir('./backend/images/lawyers')) {
                     mkdir('./backend/images/lawyers', 0777, true);
@@ -105,6 +104,7 @@ class Lawyer extends CI_Controller {
             }
             $api_data = array(
                 "lawyer_id" => $_SESSION['data']['id'],
+                "filename"=>$lawyerImage,
                 "lawyeridimage" => $lawyeridimage,
                 'edulist' => $data['edulist'],
                 'aboutme' => $data['aboutme'],
@@ -128,9 +128,6 @@ class Lawyer extends CI_Controller {
                 'otherfees' => $data['otherfees'],
                 'otherremarks' => $data['otherremarks'],
             );
-            echo "<pre>";
-            print_r($api_data);
-            die;
             $respon = execute_data('lawyer/' . $_SESSION["data"]["id"], json_encode($api_data), 'POST');
             if ($respon) {
                 $return['status'] = 'success';
@@ -150,11 +147,13 @@ class Lawyer extends CI_Controller {
             'ajaxfileupload.js',
             'jquery.form.min.js',
             'toastr/toastr.min.js',
+            'lawyerprofile.js',
         );
         $data['css'] = array(
-            'toastr/toastr.min.css'
+            'toastr/toastr.min.css',
         );
         $data['init'] = array(
+            "Lawyerprofile.edit()",
         );
         $_SESSION['current_page'] = 'Lawyer Edit profile';
         $this->load->view('updateprofile', $data);

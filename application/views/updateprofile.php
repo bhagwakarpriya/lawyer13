@@ -19,7 +19,7 @@ $this->load->view('header');
                                     <div class="bg-lightest border-1px p-30 mb-0">
                                         <h4 class="text-theme-colored mt-0 pt-5">Please complete your profile</h4>
                                         <hr>
-                                        <form id="finalprofile" name="form" action="<?php echo base_url() . 'Lawyer/updateProfile' ?>" method="post" enctype="multipart/form-data">
+                                        <form id="lawyer-editprofile" name="form" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="form_attachment">Profile Picture</label>
                                                 <input id="filename" name="filename" class="file" type="file" multiple data-show-upload="false" data-show-caption="true" tabindex="1">
@@ -37,7 +37,8 @@ $this->load->view('header');
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <input type="hidden" name="edulist" id="edulist"  value=""/>
-                                                            <select name="education" id ="education_select" class="form-control" data-validation="required" required="true"  tabindex="2">
+                                                            <select name="education" id ="education_select" class="form-control" tabindex="2">
+                                                                <option value="">select your education </option>
                                                                 <option value="LL.B">LL.B</option>
                                                                 <option value="LL.M">LL.M</option>
                                                                 <option value="Paralegal">Paralegal</option>
@@ -49,7 +50,7 @@ $this->load->view('header');
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input id="institutename" type="text" name="institutename" placeholder="Name of the Institute" class="form-control"minlength="1"  required="true" tabindex="3">
+                                                            <input id="institutename" type="text" name="institutename" placeholder="Name of the Institute" class="form-control" minlength="1" tabindex="3">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -57,13 +58,13 @@ $this->load->view('header');
                                             </div>
                                             <div class="form-group mb-10">
                                                 <label>About Me <small>*</small></label>
-                                                <textarea id="aboutme" name="aboutme" class="form-control required"  placeholder="Write something about yourself which will be shown to the Clients" rows="5" aria-required="true" required="true" tabindex="4"></textarea>
+                                                <textarea id="aboutme" name="aboutme" class="form-control"  placeholder="Write something about yourself which will be shown to the Clients" rows="5" aria-required="true"  tabindex="4"></textarea>
                                             </div>  
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Bar Council Reg Number<small>*</small></label>
-                                                        <input id="barcoucilno" type="text" name="barcoucilno" class="form-control" required="true" tabindex="5">
+                                                        <input id="barcoucilno" type="text" name="barcoucilno" class="form-control" tabindex="5">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -118,11 +119,11 @@ $this->load->view('header');
 
                                             <div class="form-group mb-10">
                                                 <label>Designation<small>*</small></label>
-                                                <input id="designation" type="text" name="designation" placeholder="designation" class="form-control" required="true" tabindex="9">
+                                                <input id="designation" type="text" name="designation" placeholder="designation" class="form-control" tabindex="9">
                                             </div>
                                             <div class="form-group">
                                                 <label>Upload Bar Council ID</label>
-                                                <input id="form_attachment" name="idimage" class="file" type="file" multiple data-show-upload="false" data-show-caption="true" required="true" tabindex="10">
+                                                <input id="form_attachment" name="idimage" class="file" type="file" multiple data-show-upload="false" data-show-caption="true"  tabindex="10">
                                             </div>
 
                                             <label>Primary Expertise  <small>*</small></label>
@@ -131,7 +132,7 @@ $this->load->view('header');
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
                                                             <input type="hidden" name="explist" id="explist"  value=""/>
-                                                            <select name="expertise" id ="expertise_select" class="form-control" data-validation="required" required="true" tabindex="11">
+                                                            <select name="expertise" id ="expertise_select" class="form-control" data-validation="required"  tabindex="11">
                                                                 <option value="" disabled hidden selected>Select a Category</option>
                                                                 <option value="Administrative Law">Administrative Law</option>
                                                                 <option value="Admiralty and Maritime">Admiralty and Maritime</option>
@@ -214,12 +215,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input type="text" placeholder="Experience in year" id="experienceyear" class="form-control" required="true" tabindex="12">
+                                                            <input type="text" placeholder="Experience in year" name="experienceyear" id="experienceyear" class="form-control"  tabindex="12">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input type="text" placeholder="Approx cases handled" id="numberOfCase" class="form-control" tabindex="13">
+                                                            <input type="text" placeholder="Approx cases handled" name="numberOfCase"  id="numberOfCase" class="form-control" tabindex="13">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,7 +233,7 @@ $this->load->view('header');
 
                                             <div class="form-group mb-10">
                                                 <label>Secondary Expertise <small>*</small></label>
-                                                <select name="secondaryexpertise" id ="secondaryexpertise" class="form-control" data-validation="required" required="true" tabindex="14">
+                                                <select name="secondaryexpertise" id ="secondaryexpertise" class="form-control" data-validation="required"  tabindex="14">
                                                     <option value="" disabled hidden selected>Select a Category</option>
                                                     <option value="Administrative Law">Administrative Law</option>
                                                     <option value="Admiralty and Maritime">Admiralty and Maritime</option>
@@ -315,12 +316,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="phonefees" type="text" name="phonefees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"  required="true" tabindex="15">
+                                                            <input id="phonefees" type="text" name="phonefees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"  tabindex="15">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="phonefeesremarks" type="text" name="phonefeesremarks" placeholder="Remarks" class="form-control"minlength="1"  required="true" tabindex="16">
+                                                            <input id="phonefeesremarks" type="text" name="phonefeesremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="16">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -330,12 +331,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="meetingfees" type="text" name="meetingfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"  required="true" tabindex="17">
+                                                            <input id="meetingfees" type="text" name="meetingfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"   tabindex="17">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="meetingfeesremarks" type="text" name="meetingfeesremarks" placeholder="Remarks" class="form-control"minlength="1"  required="true" tabindex="18">
+                                                            <input id="meetingfeesremarks" type="text" name="meetingfeesremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="18">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -346,12 +347,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="reviewdocfees" type="text" name="reviewdocfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"  required="true" tabindex="19">
+                                                            <input id="reviewdocfees" type="text" name="reviewdocfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"   tabindex="19">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="reviewdocremarks" type="text" name="reviewdocremarks" placeholder="Remarks" class="form-control"minlength="1"  required="true" tabindex="20">
+                                                            <input id="reviewdocremarks" type="text" name="reviewdocremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="20">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -361,12 +362,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="fillcaseincourtfees" type="text" name="fillcaseincourtfees" number="true" placeholder="Starting Rs." class="form-control" required="true" tabindex="21">
+                                                            <input id="fillcaseincourtfees" type="text" name="fillcaseincourtfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="21">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="fillcaseincourtremarks" type="text" name="fillcaseincourtremarks" placeholder="Remarks" class="form-control" required="true" tabindex="22">
+                                                            <input id="fillcaseincourtremarks" type="text" name="fillcaseincourtremarks" placeholder="Remarks" class="form-control"  tabindex="22">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -376,12 +377,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="hearingfees" type="text" name="hearingfees" number="true" placeholder="Starting Rs." class="form-control" required="true" tabindex="23">
+                                                            <input id="hearingfees" type="text" name="hearingfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="23">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="hearingfeesremarks" type="text" name="hearingfeesremarks" placeholder="Remarks" class="form-control" required="true" tabindex="24">
+                                                            <input id="hearingfeesremarks" type="text" name="hearingfeesremarks" placeholder="Remarks" class="form-control"  tabindex="24">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -391,17 +392,17 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="servicesname" type="text" name="servicesname" placeholder="Services Name" class="form-control" required="true" tabindex="25">
+                                                            <input id="servicesname" type="text" name="servicesname" placeholder="Services Name" class="form-control"  tabindex="25">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="otherfees" type="text" name="otherfees" placeholder="Starting Rs." class="form-control" required="true" tabindex="26">
+                                                            <input id="otherfees" type="text" name="otherfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="26">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="otherremarks" type="text" name="otherremarks" placeholder="Remarks" class="form-control" required="true" tabindex="27">
+                                                            <input id="otherremarks" type="text" name="otherremarks" placeholder="Remarks" class="form-control"  tabindex="27">
                                                         </div>
                                                     </div>
                                                 </div>
