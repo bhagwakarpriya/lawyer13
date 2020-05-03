@@ -53,10 +53,25 @@ exports.selectbyid = async (req, res) => {
     if (!req.params.id) {
         return Respond.badRequest("Missing Lawyer id", [], res);
     }
-    let lawyer = await Lawyer.findById(req.params.id).populate('LawyerMeta')
+    let lawyer = await Lawyer.findById(req.params.id);
+    //.populate('lawyer_meta');
+    // .then((lawyer)=>{
+    //     return Respond.success("Lawyer found", lawyer, res);
+    // })
+    // .catch((err)=>{
+    //     return Respond.notFound("Lawyer not found or invalid id", [], res);
+    // });
+     
     if (!lawyer) {
         return Respond.notFound("Lawyer not found or invalid id", [], res);
     }
+    let lawyer_meta = await LawyerMeta.findOne({
+        lawyer_id: lawyer._id
+    });
+    if (lawyer_meta) {
+        lawyer.lawyer_meta = lawyer_meta.details
+    }
+
     console.log(lawyer);
     return Respond.success("Lawyer found", lawyer, res);
 
