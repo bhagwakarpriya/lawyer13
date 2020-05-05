@@ -15,10 +15,6 @@ var LawyerSchema = mongoose.Schema({
     imagepath:{type:String,default:""},
     is_delete:{type:Boolean,default:false},
     is_active:{type:Boolean,default:true},
-    // lawyer_meta : {
-    //     type : mongoose.Schema.Types.ObjectId,
-    //     ref : 'lawyer_meta'
-    // },
     created: {
         type: Date,
         default: Date.now

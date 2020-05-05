@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var LawyerMetaSchema = mongoose.Schema({
     lawyer_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'lawyers'
+        ref: 'Lawyer'
     },
     lawyeridimage:{type:String,default:""},
     edulist: {type: String, required: true},
