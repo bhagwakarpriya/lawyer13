@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
 
 exports.select = async (req, res) => {
 	let lawyers = await Lawyer.find({
-		// is_active:true,node
+		is_active:true,
 		is_delete: false,
 	});
 	console.log(lawyers);
@@ -199,6 +199,8 @@ let add_lawyer_meta = async (lawyer, req, res) => {
 		aboutme: req.body.aboutme,
 		barcoucilno: req.body.barcoucilno,
 		statebarcouncil_select: req.body.statebarcouncil_select,
+		year: req.body.year,
+		month: req.body.month,
 		experienceText: req.body.experienceText,
 		designation: req.body.designation,
 		explist: req.body.explist,

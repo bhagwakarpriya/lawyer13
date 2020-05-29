@@ -4,9 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//echo '<pre>';
-//print_r($lawyerdetail);
-//die();
+
 ?><?php $this->load->view('header'); ?>
 <?php $this->load->view('topheader'); ?> 
 <!-- Start main-content -->
@@ -94,44 +92,44 @@
                                             <div class="row">
                                                 <h5 class="text-highlight light p-10"><i class="fa fa-edit mr-5"></i>fees</h5>
                                                 <div class="opening-hours col-sm-6">
-                                                    <div class="col-sm-8 text-theme-colored">
+                                                    <div class="col-sm-9 text-theme-colored">
                                                         <?php echo 'Phone Fees : '; ?>
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-3">
                                                         <?php echo $val['phonefees']; ?>
                                                     </div>
                                                 </div>
                                                 <div class="opening-hours col-sm-6">
-                                                    <div class="col-sm-8 text-theme-colored">
+                                                    <div class="col-sm-9 text-theme-colored">
                                                         <?php echo 'Meeting Fees : '; ?>
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-3">
                                                         <?php echo $val['meetingfees']; ?>
                                                     </div>
                                                 </div>
 
                                                 <div class="opening-hours col-sm-6">
-                                                    <div class="col-sm-8 text-theme-colored">
+                                                    <div class="col-sm-9 text-theme-colored">
                                                         <?php echo 'Fill case in court Fees : '; ?>
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-3">
                                                         <?php echo $val['fillcaseincourtfees']; ?>
                                                     </div>
                                                 </div>
 
                                                 <div class="opening-hours col-sm-6">
-                                                    <div class="col-sm-8 text-theme-colored">
+                                                    <div class="col-sm-9 text-theme-colored">
                                                         <?php echo 'Hearing Fees : '; ?>
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-3">
                                                         <?php echo $val['hearingfees']; ?>
                                                     </div>
                                                 </div>
                                                 <div class="opening-hours col-sm-6">
-                                                    <div class="col-sm-8 text-theme-colored">
+                                                    <div class="col-sm-9 text-theme-colored">
                                                         <?php echo 'Review document Fees: '; ?>
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-3">
                                                         <?php echo $val['reviewdocfees']; ?>
                                                     </div>
                                                 </div>

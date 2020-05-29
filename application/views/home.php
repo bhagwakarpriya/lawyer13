@@ -96,8 +96,10 @@ $this->load->view('header');
                                  data-splitout="none" 
                                  data-responsive_offset="on"
                                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                                <?php if (isset($_SESSION['usertype']) && trim($_SESSION['usertype']) == 'client') { ?>    
+                                
                                 <a class="btn btn-dark btn-flat btn-theme-colored pl-20 pr-20 mt-sm-30" href="#SubmitYourMatter">Submit Your Matter</a> </div>
-
+                                <?php }?>
                         </li>
 
                     </ul>
@@ -199,60 +201,6 @@ $this->load->view('header');
         </div>
     </section>
 
-    <!--     Section: features 
-        <section>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6 col-md-3 maxwidth500">
-                <div class="box-hover-effect effect1 wow fadeInUp mb-md-30" data-wow-duration="1.4s" data-wow-offset="10">
-                  <div class="thumb"> <img class="img-responsive img-fullwidth" src="<?php echo base_url(); ?>fassets/images/about/about1.jpg" alt="featured project"  width="476"> </div>
-                  <div class="icon-box left media bg-deep mb-0 mt-0 p-20"><a href="#" class="media-left pull-left mr-15 mt-5"><i class="fa fa-phone-square text-theme-colored font-30"></i></a>
-                    <div class="media-body">
-                      <h5 class="media-heading"><a class="text-hover-theme-colored text-uppercase font-weight-600" href="#">Case Investigation</a></h5>
-                      <p class="lineheight-20">Lorem ipsum dolor sit amet, consectetur.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3 maxwidth500">
-                <div class="box-hover-effect effect1 wow fadeInUp mb-md-30" data-wow-duration="1.8s" data-wow-offset="10">
-                  <div class="thumb"> <img class="img-responsive img-fullwidth" src="<?php echo base_url(); ?>fassets/images/about/about2.jpg" alt=""> 
-                  </div>
-                  <div class="icon-box left media bg-deep mb-0 mt-0 p-20"> <a href="#" class="media-left pull-left mr-15 mt-5"> <i class="fa fa-gavel text-theme-colored font-30"></i></a>
-                    <div class="media-body">
-                      <h5 class="media-heading"><a class="text-hover-theme-colored text-uppercase font-weight-600" href="#">Cases Fighting</a></h5>
-                      <p class="lineheight-20">Lorem ipsum dolor sit amet, consectetur.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3 maxwidth500">
-                <div class="box-hover-effect effect1 wow fadeInUp mb-md-30" data-wow-duration="2s" data-wow-offset="10">
-                  <div class="thumb"> <img class="img-responsive img-fullwidth" src="<?php echo base_url(); ?>fassets/images/about/about3.jpg" alt=""> </div>
-                  <div class="icon-box left media bg-deep mb-0 mt-0 p-20"> <a href="#" class="media-left pull-left mr-15 mt-5"> <i class="fa fa-search text-theme-colored font-30"></i></a>
-                    <div class="media-body">
-                      <h5 class="media-heading"><a class="text-hover-theme-colored text-uppercase font-weight-600" href="#">Legal Analysis</a></h5>
-                      <p class="lineheight-20">Lorem ipsum dolor sit amet, consectetur.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3 maxwidth500">
-                <div class="box-hover-effect effect1 wow fadeInUp mb-md-30" data-wow-duration="2.4s" data-wow-offset="10">
-                  <div class="thumb"> <img class="img-responsive img-fullwidth" src="<?php echo base_url(); ?>fassets/images/about/about4.jpg" alt=""> </div>
-                  <div class="icon-box left media bg-deep mb-0 mt-0 p-20"> <a href="#" class="media-left pull-left mr-15 mt-5"> <i class="fa fa-life-ring text-theme-colored font-30"></i></a>
-                    <div class="media-body">
-                      <h5 class="media-heading"><a class="text-hover-theme-colored text-uppercase font-weight-600" href="#">Legal Help</a></h5>
-                      <p class="lineheight-20">Lorem ipsum dolor sit amet, consectetur.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-    -->
-
 
     <!-- Section: Practices Area okays -->
     <section class="bg-lighter">
@@ -303,140 +251,6 @@ $this->load->view('header');
                     </div>
                 </div>
             </div>
-    </section>
-
-    <!-- Section: Attorneys -->
-    <section>
-        <div class="container pb-30">
-            <div class="section-title title-border title-right icon-bg">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="mt-0 mb-0 text-uppercase">Our</h5>
-                        <h2 class="mt-0 page-title"><i class="fa fa-legal"></i>Expert Attorneys</h2>
-                        <p>Maecenas nec efficitur felis. Nulla egestas lacus sit
-                            amet lectus tincidunt condimentum.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="attorney box-hover-effect effect1 bg-lighter mb-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-offset="10">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20">
-                                    <div class="thumb"><img class="img-fullwidth" src="<?php echo base_url(); ?>fassets/images/team/team1.jpg" alt=""></div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20 pt-20">
-                                    <div class="content">
-                                        <h4 class="author text-theme-colored mb-0">Alex Jacobson</h4>
-                                        <h6 class="title text-dark mt-0 mb-10">Attorney</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat turpis nec leo pellentesque.</p>
-                                        <ul class="contact-area mt-20">
-                                            <li class="mb-10"><a href="#"><i class="pe-7s-call"></i>+1-23-345-6789</a></li>
-                                            <li><a href="#"><i class="fa fa-envelope-o"></i>myemail@ymail.com</a></li>
-                                        </ul>
-                                        <ul class="social-icons icon-dark icon-circled icon-theme-colored icon-sm mt-30">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="attorney box-hover-effect effect1 bg-lighter mb-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-offset="10">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20 pt-20 pl-30">
-                                    <div class="content">
-                                        <h4 class="author text-theme-colored mb-0">Alex Jacobson</h4>
-                                        <h6 class="title text-dark mt-0 mb-10">Attorney</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat turpis nec leo pellentesque.</p>
-                                        <ul class="contact-area mt-20">
-                                            <li class="mb-10"><a href="#"><i class="pe-7s-call"></i>+1-23-345-6789</a></li>
-                                            <li><a href="#"><i class="fa fa-envelope-o"></i>myemail@ymail.com</a></li>
-                                        </ul>
-                                        <ul class="social-icons icon-dark icon-circled icon-theme-colored icon-sm mt-30">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20">
-                                    <div class="thumb xs-text-center sm-text-right"><img class="img-fullwidth" src="<?php echo base_url(); ?>fassets/images/team/team2.jpg" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="attorney box-hover-effect effect1 bg-lighter mb-30 wow fadeInUp" data-wow-duration="1.8s" data-wow-offset="10">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20">
-                                    <div class="thumb"><img class="img-fullwidth" src="<?php echo base_url(); ?>fassets/images/team/team3.jpg" alt=""></div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20 pt-20">
-                                    <div class="content">
-                                        <h4 class="author text-theme-colored mb-0">Alex Jacobson</h4>
-                                        <h6 class="title text-dark mt-0 mb-10">Attorney</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat turpis nec leo pellentesque.</p>
-                                        <ul class="contact-area mt-20">
-                                            <li class="mb-10"><a href="#"><i class="pe-7s-call"></i>+1-23-345-6789</a></li>
-                                            <li><a href="#"><i class="fa fa-envelope-o"></i>myemail@ymail.com</a></li>
-                                        </ul>
-                                        <ul class="social-icons icon-dark icon-circled icon-theme-colored icon-sm mt-30">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="attorney box-hover-effect effect1 bg-lighter mb-30 wow fadeInUp" data-wow-duration="1.8s" data-wow-offset="10">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20 pt-20 pl-30">
-                                    <div class="content">
-                                        <h4 class="author text-theme-colored mb-0">Alex Jacobson</h4>
-                                        <h6 class="title text-dark mt-0 mb-10">Attorney</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat turpis nec leo pellentesque.</p>
-                                        <ul class="contact-area mt-20">
-                                            <li class="mb-10"><a href="#"><i class="pe-7s-call"></i>+1-23-345-6789</a></li>
-                                            <li><a href="#"><i class="fa fa-envelope-o"></i>myemail@ymail.com</a></li>
-                                        </ul>
-                                        <ul class="social-icons icon-dark icon-circled icon-theme-colored icon-sm mt-30">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-6 xs-text-center pb-sm-20">
-                                    <div class="thumb xs-text-center sm-text-right"><img class="img-fullwidth" src="<?php echo base_url(); ?>fassets/images/team/team4.jpg" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- divider: what makes us different -->
-    <section class="divider parallax layer-overlay overlay-light" data-stellar-background-ratio="0.5" data-bg-img="<?php echo base_url(); ?>fassets/images/bg/bg2.jpg">
-        <div class="container">
-            <div class="section-content text-center">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="mt-0">We Fight for our clients</h3>
-                        <h2>Just call at <span class="text-theme-colored">(01) 234 5678</span> for emergency service</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <?php if (trim($_SESSION['usertype']) != 'lawyer') { ?>    
         <!-- Section: Case -->

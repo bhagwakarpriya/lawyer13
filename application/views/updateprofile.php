@@ -1,7 +1,7 @@
 <?php
-// echo '<pre>';
-// print_r($_SESSION);
-// die;
+//echo '<pre>';
+//print_r($lawyerdetail);
+//die();
 $this->load->view('header');
 ?>
 <?php $this->load->view('topheader'); ?> 
@@ -20,10 +20,12 @@ $this->load->view('header');
                                         <h4 class="text-theme-colored mt-0 pt-5">Please complete your profile</h4>
                                         <hr>
                                         <form id="lawyer-editprofile" name="form" method="post" enctype="multipart/form-data">
+                                            <div class="hidden">
+                                                <input id="oldfilename" name="oldfilename" value="<?php echo $lawyerdetail['lawyer_meta']['lawyeridimage']; ?>" class="file" type="file" multiple data-show-upload="false" data-show-caption="true" tabindex="1">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="form_attachment">Profile Picture</label>
-                                                <input id="filename" name="filename" class="file" type="file" multiple data-show-upload="false" data-show-caption="true" tabindex="1">
-                              <!--                  <small>Maximum upload file size: 12 MB</small>-->
+                                                <input id="filename" name="filename" class="file"  type="file" multiple data-show-upload="false" data-show-caption="true" tabindex="1">
                                             </div>
 
                                             <label>Education <small>*</small></label>
@@ -36,7 +38,7 @@ $this->load->view('header');
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input type="hidden" name="edulist" id="edulist"  value=""/>
+                                                            <input type="hidden" name="edulist" id="edulist"  value="<?php echo (isset($lawyerdetail['lawyer_meta']['edulist'])) ? $lawyerdetail['lawyer_meta']['edulist'] : ''; ?>"/>
                                                             <select name="education" id ="education_select" class="form-control" tabindex="2">
                                                                 <option value="">select your education </option>
                                                                 <option value="LL.B">LL.B</option>
@@ -50,29 +52,31 @@ $this->load->view('header');
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input id="institutename" type="text" name="institutename" placeholder="Name of the Institute" class="form-control" minlength="1" tabindex="3">
+                                                            <input id="institutename" type="text"  name="institutename" placeholder="Name of the Institute" class="form-control" minlength="1" tabindex="3">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <a id="addEdcution" class="addEdcution btn btn-success is-small is-success">Add</a>
                                             </div>
-                                            <div class="form-group mb-10">
+                                            <div class="form-group">
                                                 <label>About Me <small>*</small></label>
-                                                <textarea id="aboutme" name="aboutme" class="form-control"  placeholder="Write something about yourself which will be shown to the Clients" rows="5" aria-required="true"  tabindex="4"></textarea>
+                                                <textarea style="text-align: left;" id="aboutme" name="aboutme" class="form-control"   placeholder="Write something about yourself which will be shown to the Clients" rows="5" >
+                                                    <?php echo (isset($lawyerdetail['lawyer_meta']['aboutme'])) ? $lawyerdetail['lawyer_meta']['aboutme'] : ''; ?>
+                                                </textarea>
                                             </div>  
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>Bar Council Reg Number<small>*</small></label>
-                                                        <input id="barcoucilno" type="text" name="barcoucilno" class="form-control" tabindex="5">
+                                                        <input id="barcoucilno" value="<?php echo (isset($lawyerdetail['lawyer_meta']['barcoucilno'])) ? $lawyerdetail['lawyer_meta']['barcoucilno'] : ''; ?>" type="text" name="barcoucilno" class="form-control" tabindex="5">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label>State Bar Council<small>*</small></label> 
                                                         <select class="form-control" name="statebarcouncil_select" id ="statebarcouncil_select" data-validation="required" tabindex="6">
-                                                            <option value="" >Select State</option>
-                                                            <option value="Gujarat" >Gujarat</option>
+                                                            <option value="" selected="<?php echo (isset($lawyerdetail['lawyer_meta']['statebarcouncil_select']) && $lawyerdetail['lawyer_meta']['statebarcouncil_select'] == '') ? '' : ''; ?>" >Select State</option>
+                                                            <option value="Gujarat" selected="<?php echo (isset($lawyerdetail['lawyer_meta']['statebarcouncil_select']) && $lawyerdetail['lawyer_meta']['statebarcouncil_select'] == 'Gujarat') ? $lawyerdetail['lawyer_meta']['statebarcouncil_select'] : ''; ?>" >Gujarat</option>
                                                         </select></div>
                                                 </div>
                                             </div>
@@ -83,7 +87,7 @@ $this->load->view('header');
                                                         <select name="year" id ="year_select" class="year_select form-control year" data-validation="required" tabindex="7">
                                                             <option value="">Select year</option>
                                                             <?php for ($i = 1973; $i <= date("Y"); $i++) { ?>
-                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                            <option value="<?php echo $i; ?>" <?php echo $i==($lawyerdetail['lawyer_meta']['year']) ? selected : ''; ?>><?php echo $i; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -91,19 +95,19 @@ $this->load->view('header');
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <select name="month" id ="month_select" class=" month_select form-control" data-validation="required" tabindex="8">
-                                                            <option value="">Select month</option>
-                                                            <option value="1">January</option>
-                                                            <option value="2">February</option>
-                                                            <option value="3">March</option>
-                                                            <option value="4">April</option>
-                                                            <option value="5">May</option>
-                                                            <option value="6">June</option>
-                                                            <option value="7">July</option>
-                                                            <option value="8">August</option>
-                                                            <option value="9">September</option>
-                                                            <option value="10">October</option>
-                                                            <option value="11">November</option>
-                                                            <option value="12">December</option>
+                                                            <option value="sel" <?php echo $lawyerdetail['lawyer_meta']['month']=="" ? "selected" : ''; ?>>Select month</option>
+                                                            <option value="1" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="1" ? selected : ''; ?>>January</option>
+                                                            <option value="2" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="2" ? selected : ''; ?>>February</option>
+                                                            <option value="3" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="3" ? selected : ''; ?>>March</option>
+                                                            <option value="4" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="4" ? selected : ''; ?>>April</option>
+                                                            <option value="5" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="5" ? selected : ''; ?>>May</option>
+                                                            <option value="6" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="6" ? selected : ''; ?>>June</option>
+                                                            <option value="7" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="7" ? selected : ''; ?>>July</option>
+                                                            <option value="8" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="8" ? selected : ''; ?>>August</option>
+                                                            <option value="9" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="9" ? selected : ''; ?>>September</option>
+                                                            <option value="10" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="10" ? selected : ''; ?>>October</option>
+                                                            <option value="11" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="11" ? selected : ''; ?>>November</option>
+                                                            <option value="12" <?php echo isset($lawyerdetail['lawyer_meta']['month'])&& $lawyerdetail['lawyer_meta']['month']=="12" ? selected : ''; ?>>December</option>
                                                         </select>
 
                                                     </div>
@@ -113,13 +117,16 @@ $this->load->view('header');
                                                     <label>Experience</label>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input id="experienceText" name="experienceText" type="text" class="form-control experienceText">
+                                                    <input id="experienceText" value="<?php echo (isset($lawyerdetail['lawyer_meta']['experienceText'])) ? $lawyerdetail['lawyer_meta']['experienceText'] : ''; ?>" name="experienceText" type="text" class="form-control experienceText">
                                                 </div>
                                             </div>
 
                                             <div class="form-group mb-10">
                                                 <label>Designation<small>*</small></label>
-                                                <input id="designation" type="text" name="designation" placeholder="designation" class="form-control" tabindex="9">
+                                                <input id="designation" type="text" name="designation" value="<?php echo (isset($lawyerdetail['lawyer_meta']['designation'])) ? $lawyerdetail['lawyer_meta']['designation'] : ''; ?>" placeholder="designation" class="form-control" tabindex="9">
+                                            </div>
+                                            <div class="hidden">
+                                                <input name="oldidimage" value="<?php echo $lawyerdetail['lawyer_meta']['idimage']; ?>" class="file" type="file" multiple data-show-upload="false" data-show-caption="true" tabindex="1">
                                             </div>
                                             <div class="form-group">
                                                 <label>Upload Bar Council ID</label>
@@ -131,83 +138,17 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
-                                                            <input type="hidden" name="explist" id="explist"  value=""/>
+                                                            <input type="hidden" name="explist" id="explist" value="<?php echo (isset($lawyerdetail['lawyer_meta']['explist'])) ? $lawyerdetail['lawyer_meta']['explist'] : ''; ?>"/>
                                                             <select name="expertise" id ="expertise_select" class="form-control" data-validation="required"  tabindex="11">
                                                                 <option value="" disabled hidden selected>Select a Category</option>
-                                                                <option value="Administrative Law">Administrative Law</option>
-                                                                <option value="Admiralty and Maritime">Admiralty and Maritime</option>
-                                                                <option value="Adoption">Adoption</option>
-                                                                <option value="Advertising">Advertising</option>
-                                                                <option value="Animal Laws">Animal Laws</option>
-                                                                <option value="Arbitration and Mediation">Arbitration and Mediation</option>
-                                                                <option value="Aviation">Aviation</option>
-                                                                <option value="Banking">Banking</option>
-                                                                <option value="Bankruptcy and Debt">Bankruptcy and Debt</option>
-                                                                <option value="Cheque Bounce">Cheque Bounce</option>
-                                                                <option value="Child Custody">Child Custody</option>
-                                                                <option value="Civil">Civil</option>
-                                                                <option value="Commercial">Commercial</option>
-                                                                <option value="Consumer Protection">Consumer Protection</option>
-                                                                <option value="Contracts and Agreements">Contracts and Agreements</option>
-                                                                <option value="Corporate and Incorporation">Corporate and Incorporation</option>
-                                                                <option value="Criminal">Criminal</option>
-                                                                <option value="Customs, Excise">Customs, Excise</option>
-                                                                <option value="Cyber, Internet, Information Technology">Cyber, Internet, Information Technology</option>
-                                                                <option value="Debt and Lending Agreement">Debt and Lending Agreement</option>
-                                                                <option value="Debt Collection">Debt Collection</option>
-                                                                <option value="Divorce">Divorce</option>
-                                                                <option value="Documentation">Documentation</option>
-                                                                <option value="Domestic Violence">Domestic Violence</option>
-                                                                <option value="Election Campaign and Political Laws">Election Campaign and Political Laws</option>
-                                                                <option value="Employment and Labour">Employment and Labour</option>
-                                                                <option value="Environment and Natural Resources">Environment and Natural Resources</option>
-                                                                <option value="Equipment Finance and Leasing">Equipment Finance and Leasing</option>
-                                                                <option value="Family">Family</option>
-                                                                <option value="Financial Markets and Services">Financial Markets and Services</option>
-                                                                <option value="Government Contracts">Government Contracts</option>
-                                                                <option value="Human Rights">Human Rights</option>
-                                                                <option value="Immigration">Immigration</option>
-                                                                <option value="Industrial Laws">Industrial Laws</option>
-                                                                <option value="Insurance">Insurance</option>
-                                                                <option value="Intellectual Property, Copyright, Patent, Trademark">Intellectual Property, Copyright, Patent, Trademark</option>
-                                                                <option value="International Laws">International Laws</option>
-                                                                <option value="IT Contracts">IT Contracts</option>
-                                                                <option value="Juvenile">Juvenile</option>
-                                                                <option value="Landlord and Tenant">Landlord and Tenant</option>
-                                                                <option value="Licensing">Licensing</option>
-                                                                <option value="Mail Fraud">Mail Fraud</option>
-                                                                <option value="Maternity">Maternity</option>
-                                                                <option value="Media, Communication, Entertainment">Media, Communication, Entertainment</option>
-                                                                <option value="Mergers and Acquisition">Mergers and Acquisition</option>
-                                                                <option value="Military Laws">Military Laws</option>
-                                                                <option value="Motor Accident">Motor Accident</option>
-                                                                <option value="Muslim Laws">Muslim Laws</option>
-                                                                <option value="Oil and Gas">Oil and Gas</option>
-                                                                <option value="Open Source Codes">Open Source Codes</option>
-                                                                <option value="Outsourcing Agreement/Laws">Outsourcing Agreement/Laws</option>
-                                                                <option value="Partnership">Partnership</option>
-                                                                <option value="Police Laws">Police Laws</option>
-                                                                <option value="Power of Attorney">Power of Attorney</option>
-                                                                <option value="Privacy">Privacy</option>
-                                                                <option value="Property">Property</option>
-                                                                <option value="Real Estate">Real Estate</option>
-                                                                <option value="Registration">Registration</option>
-                                                                <option value="RTI">RTI</option>
-                                                                <option value="Sale">Sale</option>
-                                                                <option value="Sale of Goods">Sale of Goods</option>
-                                                                <option value="Sex Crime">Sex Crime</option>
-                                                                <option value="Sexual Harassment at Workplace">Sexual Harassment at Workplace</option>
-                                                                <option value="Software License">Software License</option>
-                                                                <option value="Sports Law">Sports Law</option>
-                                                                <option value="Tax">Tax</option>
-                                                                <option value="Tax-Property Tax">Tax-Property Tax</option>
-                                                                <option value="Tax-Income Tax">Tax-Income Tax</option>
-                                                                <option value="Telecommunication">Telecommunication</option>
-                                                                <option value="Torts">Torts</option>
-                                                                <option value="Transportation">Transportation</option>
-                                                                <option value="Trust and Society (NGO)">Trust and Society (NGO)</option>
-                                                                <option value="Work Permits">Work Permits</option>
-                                                                <option value="Tax-GST">Tax-GST</option>
+                                                                <?php
+                                                                if (count($specilization) > 0) {
+                                                                    foreach ($specilization as $key => $val) {
+                                                                        ?>
+                                                                        <option value="<?php echo $val['tag']; ?>"><?php echo $val['tag']; ?></option>
+                                                                    <?php }
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -235,80 +176,14 @@ $this->load->view('header');
                                                 <label>Secondary Expertise <small>*</small></label>
                                                 <select name="secondaryexpertise" id ="secondaryexpertise" class="form-control" data-validation="required"  tabindex="14">
                                                     <option value="" disabled hidden selected>Select a Category</option>
-                                                    <option value="Administrative Law">Administrative Law</option>
-                                                    <option value="Admiralty and Maritime">Admiralty and Maritime</option>
-                                                    <option value="Adoption">Adoption</option>
-                                                    <option value="Advertising">Advertising</option>
-                                                    <option value="Animal Laws">Animal Laws</option>
-                                                    <option value="Arbitration and Mediation">Arbitration and Mediation</option>
-                                                    <option value="Aviation">Aviation</option>
-                                                    <option value="Banking">Banking</option>
-                                                    <option value="Bankruptcy and Debt">Bankruptcy and Debt</option>
-                                                    <option value="Cheque Bounce">Cheque Bounce</option>
-                                                    <option value="Child Custody">Child Custody</option>
-                                                    <option value="Civil">Civil</option>
-                                                    <option value="Commercial">Commercial</option>
-                                                    <option value="Consumer Protection">Consumer Protection</option>
-                                                    <option value="Contracts and Agreements">Contracts and Agreements</option>
-                                                    <option value="Corporate and Incorporation">Corporate and Incorporation</option>
-                                                    <option value="Criminal">Criminal</option>
-                                                    <option value="Customs, Excise">Customs, Excise</option>
-                                                    <option value="Cyber, Internet, Information Technology">Cyber, Internet, Information Technology</option>
-                                                    <option value="Debt and Lending Agreement">Debt and Lending Agreement</option>
-                                                    <option value="Debt Collection">Debt Collection</option>
-                                                    <option value="Divorce">Divorce</option>
-                                                    <option value="Documentation">Documentation</option>
-                                                    <option value="Domestic Violence">Domestic Violence</option>
-                                                    <option value="Election Campaign and Political Laws">Election Campaign and Political Laws</option>
-                                                    <option value="Employment and Labour">Employment and Labour</option>
-                                                    <option value="Environment and Natural Resources">Environment and Natural Resources</option>
-                                                    <option value="Equipment Finance and Leasing">Equipment Finance and Leasing</option>
-                                                    <option value="Family">Family</option>
-                                                    <option value="Financial Markets and Services">Financial Markets and Services</option>
-                                                    <option value="Government Contracts">Government Contracts</option>
-                                                    <option value="Human Rights">Human Rights</option>
-                                                    <option value="Immigration">Immigration</option>
-                                                    <option value="Industrial Laws">Industrial Laws</option>
-                                                    <option value="Insurance">Insurance</option>
-                                                    <option value="Intellectual Property, Copyright, Patent, Trademark">Intellectual Property, Copyright, Patent, Trademark</option>
-                                                    <option value="International Laws">International Laws</option>
-                                                    <option value="IT Contracts">IT Contracts</option>
-                                                    <option value="Juvenile">Juvenile</option>
-                                                    <option value="Landlord and Tenant">Landlord and Tenant</option>
-                                                    <option value="Licensing">Licensing</option>
-                                                    <option value="Mail Fraud">Mail Fraud</option>
-                                                    <option value="Maternity">Maternity</option>
-                                                    <option value="Media, Communication, Entertainment">Media, Communication, Entertainment</option>
-                                                    <option value="Mergers and Acquisition">Mergers and Acquisition</option>
-                                                    <option value="Military Laws">Military Laws</option>
-                                                    <option value="Motor Accident">Motor Accident</option>
-                                                    <option value="Muslim Laws">Muslim Laws</option>
-                                                    <option value="Oil and Gas">Oil and Gas</option>
-                                                    <option value="Open Source Codes">Open Source Codes</option>
-                                                    <option value="Outsourcing Agreement/Laws">Outsourcing Agreement/Laws</option>
-                                                    <option value="Partnership">Partnership</option>
-                                                    <option value="Police Laws">Police Laws</option>
-                                                    <option value="Power of Attorney">Power of Attorney</option>
-                                                    <option value="Privacy">Privacy</option>
-                                                    <option value="Property">Property</option>
-                                                    <option value="Real Estate">Real Estate</option>
-                                                    <option value="Registration">Registration</option>
-                                                    <option value="RTI">RTI</option>
-                                                    <option value="Sale">Sale</option>
-                                                    <option value="Sale of Goods">Sale of Goods</option>
-                                                    <option value="Sex Crime">Sex Crime</option>
-                                                    <option value="Sexual Harassment at Workplace">Sexual Harassment at Workplace</option>
-                                                    <option value="Software License">Software License</option>
-                                                    <option value="Sports Law">Sports Law</option>
-                                                    <option value="Tax">Tax</option>
-                                                    <option value="Tax-Property Tax">Tax-Property Tax</option>
-                                                    <option value="Tax-Income Tax">Tax-Income Tax</option>
-                                                    <option value="Telecommunication">Telecommunication</option>
-                                                    <option value="Torts">Torts</option>
-                                                    <option value="Transportation">Transportation</option>
-                                                    <option value="Trust and Society (NGO)">Trust and Society (NGO)</option>
-                                                    <option value="Work Permits">Work Permits</option>
-                                                    <option value="Tax-GST">Tax-GST</option>
+                                                    <?php
+                                                    if (count($specilization) > 0) {
+                                                        foreach ($specilization as $key => $val) {
+                                                            ?>
+                                                    <option value="<?php echo $val['tag']; ?>" selected="<?php echo $val['tag']; ?>"><?php echo $val['tag']; ?></option>
+                                                        <?php }
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <label>Phone Consultation Fees <small>*</small></label>
@@ -316,12 +191,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="phonefees" type="text" name="phonefees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"  tabindex="15">
+                                                            <input id="phonefees" value="<?php echo (isset($lawyerdetail['lawyer_meta']['phonefees'])) ? $lawyerdetail['lawyer_meta']['phonefees'] : ''; ?>" type="text" name="phonefees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"  tabindex="15">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="phonefeesremarks" type="text" name="phonefeesremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="16">
+                                                            <input id="phonefeesremarks" value="<?php echo (isset($lawyerdetail['lawyer_meta']['phonefees'])) ? $lawyerdetail['lawyer_meta']['phonefees'] : ''; ?>" type="text" name="phonefeesremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="16">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -331,12 +206,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="meetingfees" type="text" name="meetingfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"   tabindex="17">
+                                                            <input id="meetingfees" value="<?php echo (isset($lawyerdetail['lawyer_meta']['meetingfees'])) ? $lawyerdetail['lawyer_meta']['meetingfees'] : ''; ?>" type="text" name="meetingfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"   tabindex="17">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="meetingfeesremarks" type="text" name="meetingfeesremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="18">
+                                                            <input id="meetingfeesremarks" value="<?php echo (isset($lawyerdetail['lawyer_meta']['meetingfeesremarks'])) ? $lawyerdetail['lawyer_meta']['meetingfeesremarks'] : ''; ?>" type="text" name="meetingfeesremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="18">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -347,12 +222,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="reviewdocfees" type="text" name="reviewdocfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"   tabindex="19">
+                                                            <input id="reviewdocfees" value="<?php echo (isset($lawyerdetail['lawyer_meta']['reviewdocfees'])) ? $lawyerdetail['lawyer_meta']['reviewdocfees'] : ''; ?>" type="text" name="reviewdocfees" number="true" placeholder="Starting Rs." class="form-control"minlength="1"   tabindex="19">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="reviewdocremarks" type="text" name="reviewdocremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="20">
+                                                            <input id="reviewdocremarks" value="<?php echo (isset($lawyerdetail['lawyer_meta']['reviewdocremarks'])) ? $lawyerdetail['lawyer_meta']['reviewdocremarks'] : ''; ?>" type="text" name="reviewdocremarks" placeholder="Remarks" class="form-control"minlength="1"   tabindex="20">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -362,12 +237,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="fillcaseincourtfees" type="text" name="fillcaseincourtfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="21">
+                                                            <input id="fillcaseincourtfees" type="text" name="fillcaseincourtfees" value="<?php echo (isset($lawyerdetail['lawyer_meta']['fillcaseincourtfees'])) ? $lawyerdetail['lawyer_meta']['fillcaseincourtfees'] : ''; ?>" number="true" placeholder="Starting Rs." class="form-control"  tabindex="21">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="fillcaseincourtremarks" type="text" name="fillcaseincourtremarks" placeholder="Remarks" class="form-control"  tabindex="22">
+                                                            <input id="fillcaseincourtremarks" type="text" value="<?php echo (isset($lawyerdetail['lawyer_meta']['fillcaseincourtremarks'])) ? $lawyerdetail['lawyer_meta']['fillcaseincourtremarks'] : ''; ?>" name="fillcaseincourtremarks" placeholder="Remarks" class="form-control"  tabindex="22">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -377,12 +252,12 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="hearingfees" type="text" name="hearingfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="23">
+                                                            <input id="hearingfees" value="<?php echo (isset($lawyerdetail['lawyer_meta']['hearingfees'])) ? $lawyerdetail['lawyer_meta']['hearingfees'] : ''; ?>" type="text" name="hearingfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="23">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input id="hearingfeesremarks" type="text" name="hearingfeesremarks" placeholder="Remarks" class="form-control"  tabindex="24">
+                                                            <input id="hearingfeesremarks" value="<?php echo (isset($lawyerdetail['lawyer_meta']['hearingfeesremarks'])) ? $lawyerdetail['lawyer_meta']['hearingfeesremarks'] : ''; ?>" type="text" name="hearingfeesremarks" placeholder="Remarks" class="form-control"  tabindex="24">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -392,17 +267,17 @@ $this->load->view('header');
                                                 <div class="row" >
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="servicesname" type="text" name="servicesname" placeholder="Services Name" class="form-control"  tabindex="25">
+                                                            <input id="servicesname" value="<?php echo (isset($lawyerdetail['lawyer_meta']['servicesname'])) ? $lawyerdetail['lawyer_meta']['servicesname'] : ''; ?>" type="text" name="servicesname" placeholder="Services Name" class="form-control"  tabindex="25">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="otherfees" type="text" name="otherfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="26">
+                                                            <input id="otherfees" value="<?php echo (isset($lawyerdetail['lawyer_meta']['otherfees'])) ? $lawyerdetail['lawyer_meta']['otherfees'] : ''; ?>" type="text" name="otherfees" number="true" placeholder="Starting Rs." class="form-control"  tabindex="26">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input id="otherremarks" type="text" name="otherremarks" placeholder="Remarks" class="form-control"  tabindex="27">
+                                                            <input id="otherremarks" value="<?php echo (isset($lawyerdetail['lawyer_meta']['otherremarks'])) ? $lawyerdetail['lawyer_meta']['otherremarks'] : ''; ?>" type="text" name="otherremarks" placeholder="Remarks" class="form-control"  tabindex="27">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -413,7 +288,7 @@ $this->load->view('header');
                                                 <button type="submit" class="btn btn-dark btn-theme-colored">Submit</button>
                                             </div>
                                         </form>
-                                        <!-- Job Form Validation-->
+                                        <!-- Job Form Validation
 <!--                                        <script type="text/javascript">
                                           $("#finalprofile").validate({
                                             submitHandler: function(form) {
@@ -450,4 +325,4 @@ $this->load->view('header');
     </div>
 
 
-    <?php $this->load->view('footer'); ?>
+<?php $this->load->view('footer'); ?>

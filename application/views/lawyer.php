@@ -37,6 +37,9 @@
                     <?php
                     if (count($lawyer) > 0) {
                         foreach ($lawyer as $key => $val) {
+                            if ($val['usertype'] == 'admin') {
+                                continue;
+                            }
                             ?>
                             <div class="upcoming-events media maxwidth400 bg-light mb-20">
                                 <div class="row equal-height">
@@ -48,7 +51,6 @@
                                     <div class="col-sm-4 border-right pl-0 pl-sm-15">
                                         <div class="event-details p-15 mt-20">
                                             <h4 class="media-heading text-uppercase font-weight-500"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante Nulla vel metus scelerisque ante.</p>
                                             <a href="<?php echo base_url(); ?>Lawyer/profile/<?php echo $val['_id']; ?>" class="btn btn-dark btn-theme-colored btn-xs">View Full Profile <i class="fa fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
@@ -76,34 +78,34 @@
                 if (count($lawyer) > 0) {
                     foreach ($lawyer as $key => $val) {
                         ?>
-                                                            <div class="upcoming-events media maxwidth400 bg-light mb-20">
-                                                                <div class="row equal-height">
-                                                                    <div class="col-sm-4 pr-0 pr-sm-15">
-                                                                        <div class="thumb p-15">
-                                                                            <img class="img-fullwidth" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="...">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-4 border-right pl-0 pl-sm-15">
-                                                                        <div class="event-details p-15 mt-20">
-                                                                            <h4 class="media-heading text-uppercase font-weight-500"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h4>
-                                                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante Nulla vel metus scelerisque ante.</p>
-                                                                            <a href="<?php echo base_url(); ?>Lawyer/profile/<?php echo $val['_id']; ?>" class="btn btn-dark btn-theme-colored btn-xs">View Full Profile <i class="fa fa-angle-double-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-4">
-                                                                        <div class="event-count p-15 mt-15">
-                                                                            <ul class="event-date list-inline font-16 text-uppercase mt-10 mb-20">
-                                                                                <li class="p-15 mr-5 bg-lightest"><?php echo date(M, strtotime($val['created'])) ?></li>
-                                                                                <li class="p-15 pl-20 pr-20 mr-5 bg-lightest"> <?php echo date(d, strtotime($val['created'])) ?></li>
-                                                                                <li class="p-15 bg-lightest"><?php echo date(Y, strtotime($val['created'])) ?></li>
-                                                                            </ul>
-                                                                            <ul>
-                                                                                <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i> <?php echo $val['city']; ?> City.</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                            <div class="upcoming-events media maxwidth400 bg-light mb-20">
+                                                                                <div class="row equal-height">
+                                                                                    <div class="col-sm-4 pr-0 pr-sm-15">
+                                                                                        <div class="thumb p-15">
+                                                                                            <img class="img-fullwidth" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="...">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 border-right pl-0 pl-sm-15">
+                                                                                        <div class="event-details p-15 mt-20">
+                                                                                            <h4 class="media-heading text-uppercase font-weight-500"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h4>
+                                                                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante Nulla vel metus scelerisque ante.</p>
+                                                                                            <a href="<?php echo base_url(); ?>Lawyer/profile/<?php echo $val['_id']; ?>" class="btn btn-dark btn-theme-colored btn-xs">View Full Profile <i class="fa fa-angle-double-right"></i></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <div class="event-count p-15 mt-15">
+                                                                                            <ul class="event-date list-inline font-16 text-uppercase mt-10 mb-20">
+                                                                                                <li class="p-15 mr-5 bg-lightest"><?php echo date(M, strtotime($val['created'])) ?></li>
+                                                                                                <li class="p-15 pl-20 pr-20 mr-5 bg-lightest"> <?php echo date(d, strtotime($val['created'])) ?></li>
+                                                                                                <li class="p-15 bg-lightest"><?php echo date(Y, strtotime($val['created'])) ?></li>
+                                                                                            </ul>
+                                                                                            <ul>
+                                                                                                <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i> <?php echo $val['city']; ?> City.</li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                         <?php
                     }
                 }

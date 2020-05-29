@@ -50,6 +50,7 @@ class Home extends CI_Controller {
         $data['init'] = array(
             "Home.casedetail()",
         );
+        $_SESSION['current_page'] = 'home';
         $response = execute_data('lawyer/', '', 'GET');
         $data['lawyer'] = $response['payload'];
         $response = execute_data('specilization/', '', 'GET');

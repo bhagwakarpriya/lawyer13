@@ -5,14 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="widget no-border m-0">
-                            <ul class="social-icons icon-sm sm-text-center">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
+                    
                     </div>
                     <!--login logout-->
                     <div class="col-md-9">
@@ -29,7 +22,7 @@
 
                                         <a class="btn text-white bg-theme-colored" href="<?php echo base_url(); ?>Login">Login</a>
                                         <!-- Registration modal -->
-                                       <!--if ($this->uri->segment(2) == '')-->
+                                        <!--if ($this->uri->segment(2) == '')-->
                                         <button type="button" class="btn text-white bg-theme-colored" data-toggle="modal" data-target=".bs-example-modal-sm">Registration</button>
                                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
                                             <div class="modal-dialog">
@@ -72,17 +65,18 @@
                     <nav>
                         <div id="menuzord" class="menuzord red"> <a class="menuzord-brand" href="javascript:void(0)"><img src="<?php echo base_url(); ?>fassets/images/logo-wide.png" alt=""></a>
                             <ul class="menuzord-menu">
-                                <li class="active">
+                                <li class="<?php echo $_SESSION['current_page'] =='home' ? active : '' ?>">
                                     <a href="<?php echo base_url(); ?>">Home</a>
                                 </li>
-                                <li>
+                                <li class="<?php echo $_SESSION['current_page'] == 'lawyer' ? active : '' ?>">
                                     <a href="<?php echo base_url(); ?>Lawyer/">Lawyer</a>
                                 </li>
-                                <li>
+                                <li class="<?php echo $_SESSION['current_page'] == 'about' ? active : '' ?>">
                                     <a href="<?php echo base_url(); ?>About/">About</a>
                                 </li>
                                 <?php if (isset($_SESSION['usertype']) && trim($_SESSION['usertype']) == 'lawyer') { ?>    
-                                    <li><a href="#">Profile</a>
+                                    <li class="<?php echo $_SESSION['current_page'] == 'profile' ? active : '' ?>">
+                                        <a href="#">Profile</a>
                                         <ul class="dropdown">
                                             <li><a href="<?php echo base_url(); ?>Lawyer/updateProfile">Edit Profile</a></li>
                                             <li><a href="<?php echo base_url(); ?>Home/logout">Logout</a></li>
@@ -100,7 +94,9 @@
                                         </ul>
                                     </li>
                                 <?php } ?>
-                                <li><a href="<?php echo base_url(); ?>Categories/">Categories</a> </li>
+                                <li class="<?php echo $_SESSION['current_page'] == 'categories' ? active : '' ?>">
+                                    <a href="<?php echo base_url(); ?>Categories/">Categories</a>
+                                </li>
 
                             </ul>
 

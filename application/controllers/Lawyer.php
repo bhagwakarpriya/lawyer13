@@ -10,8 +10,8 @@ class Lawyer extends CI_Controller {
             echo "server not response";
         }
         $data['lawyer'] = $response['payload'];
-        $this->load->view('lawyer', $data);
         $_SESSION['current_page'] = 'lawyer';
+        $this->load->view('lawyer', $data);
     }
 
     public function profile($id) {
@@ -95,7 +95,7 @@ class Lawyer extends CI_Controller {
                 $image_file = pathinfo($_FILES['filename']['name']);
                 $lawyerImage = time() . '.' . $image_file['extension'];
                 $config['upload_path'] = './backend/images/lawyers';
-                $config['allowed_types'] = 'gif|jpg|png';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['file_name'] = $lawyerImage;
                 $this->upload->initialize($config);
                 $this->upload->do_upload('filename');
@@ -107,7 +107,7 @@ class Lawyer extends CI_Controller {
                 $image_file = pathinfo($_FILES['idimage']['name']);
                 $lawyeridimage = time() . '.' . $image_file['extension'];
                 $config['upload_path'] = './backend/images/lawyersbarcoucilno';
-                $config['allowed_types'] = 'gif|jpg|png';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['file_name'] = $lawyeridimage;
                 $this->upload->initialize($config);
                 $this->upload->do_upload('idimage');
@@ -120,6 +120,8 @@ class Lawyer extends CI_Controller {
                 'aboutme' => $data['aboutme'],
                 'barcoucilno' => $data['barcoucilno'],
                 'statebarcouncil_select' => $data['statebarcouncil_select'],
+                'year' => $data['year'],
+                'month' => $data['month'],
                 'experienceText' => $data['experienceText'],
                 'designation' => $data['designation'],
                 'explist' => $data['explist'],
@@ -152,6 +154,10 @@ class Lawyer extends CI_Controller {
             echo json_encode($return);
             exit();
         }
+        $response = execute_data('specilization/', '', 'GET');
+        $data['specilization'] = $response['payload'];
+        $response = execute_data('lawyer/' . $_SESSION['data']['id'], '', 'GET');
+        $data['lawyerdetail']['lawyer_meta'] = $response['payload']['lawyer_meta'];
         $data['js'] = array(
             'comman_function.js',
             'ajaxfileupload.js',
@@ -165,7 +171,7 @@ class Lawyer extends CI_Controller {
         $data['init'] = array(
             "Lawyerprofile.edit()",
         );
-        $_SESSION['current_page'] = 'Lawyer Edit profile';
+        $_SESSION['current_page'] = 'profile';
         $this->load->view('updateprofile', $data);
     }
 

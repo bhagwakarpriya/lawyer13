@@ -3,8 +3,6 @@ var Lawyerprofile = function () {
         var form = $('#lawyer-editprofile');
         var rules = {
             filename: {required: true},
-            education: {required: true},
-            institutename: {required: true},
             aboutme: {required: true},
             barcoucilno: {required: true},
             statebarcouncil_select: {required: true},
@@ -12,22 +10,15 @@ var Lawyerprofile = function () {
             month: {required: true},
             designation: {required: true},
             idimage: {required: true},
-            expertise: {required: true},
-            experienceyear: {required: true},
-            numberOfCase: {required: true},
             secondaryexpertise: {required: true},
             phonefees: {required: true},
             meetingfees: {required: true},
             reviewdocfees: {required: true},
             fillcaseincourtfees: {required: true},
             hearingfees: {required: true},
-            servicesname: {required: true},
-            otherfees: {required: true},
         };
         var messages = {
             filename: {required: "Please select your profile"},
-            education: {required: "Plase select your equcation"},
-            institutename: {required: "Plase Enter your institute name and added"},
             aboutme: {required: "Plase Enter something about yourself which will be shown to the Clients"},
             barcoucilno: {required:"Plase Enter your barcoucil number"},
             statebarcouncil_select: {required: "Plase select your barcoucil state"},
@@ -35,17 +26,12 @@ var Lawyerprofile = function () {
             month: {required: "Plase select your Practicing starting month"},
             designation: {required: "Plase enter your designation" },
             idimage: {required: "Please select your barcouncil image"},
-            expertise:{required: "Plase select your expertise"},
-            experienceyear:{required: "Plase enter your expertise year"},
-            numberOfCase:{required: "Plase enter number of case handled"},
             secondaryexpertise:{required: "Plase select your secondary expertise"},
             phonefees: {required: "Plase enter phone fees"},
             meetingfees: {required:  "Plase enter phone fees"},
             reviewdocfees: {required:  "Plase enter review to document fees"},
             fillcaseincourtfees: {required:  "Plase enter fill case in court fees"},
             hearingfees: {required:  "Plase enter hearing fees"},
-            servicesname: {required:  "Plase enter other service name"},
-            otherfees: {required:  "Plase enter other service fees"},
         };
         handleFormValidateWithMsg(form, rules, messages, function (form) {
             handleAjaxFormSubmit(form, true);

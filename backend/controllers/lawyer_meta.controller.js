@@ -13,6 +13,8 @@ exports.add = async (req, res) => {
         aboutme: req.body.aboutme,
         barcoucilno: req.body.barcoucilno,
         statebarcouncil_select: req.body.statebarcouncil_select,
+        year: req.body.year,
+		month: req.body.month,
         experienceText: req.body.experienceText,
         designation: req.body.designation,
         explist: req.body.explist,
