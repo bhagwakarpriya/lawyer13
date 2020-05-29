@@ -14,6 +14,16 @@ class Lawyer extends CI_Controller {
         $_SESSION['current_page'] = 'lawyer';
     }
 
+    public function profile($id) {
+        $response = execute_data('lawyer/' . $id, '', 'GET');
+        if (!is_array($response)) {
+            echo "server not response";
+        }
+        $data['lawyerdetail']['lawyer_meta'] = $response['payload']['lawyer_meta'];
+        $_SESSION['current_page'] = 'lawyer';
+        $this->load->view('lawyerdetail', $data);
+    }
+
     public function registration() {
 //        $_SESSION['current_page'] = 'registration';
         if ($this->input->post()) {
@@ -104,7 +114,7 @@ class Lawyer extends CI_Controller {
             }
             $api_data = array(
                 "lawyer_id" => $_SESSION['data']['id'],
-                "filename"=>$lawyerImage,
+                "filename" => $lawyerImage,
                 "lawyeridimage" => $lawyeridimage,
                 'edulist' => $data['edulist'],
                 'aboutme' => $data['aboutme'],
