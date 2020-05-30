@@ -25,8 +25,7 @@
             } else {
                 echo '<td><center><a href="#activeModel" data-toggle="modal" data-id="' . $l['_id'] . '" class="link-black text-sm activelawyer" data-original-title="Delete"><span class="label btn-info">Deactive</span></a></center></td>';
             }
-            echo '<td><center><a href="" data-toggle="modal" data-id="' . $l['_id'] . '">View</a>';
-            echo '&nbsp;&nbsp;<a href="#deleteLawyer" data-toggle="modal" data-id="' . $l['_id'] . '" class="fa fa-trash-o btn btn-danger delete"></a><center></td>';
+            echo '<td><center><a href="#deleteLawyer" data-toggle="modal" data-id="' . $l['_id'] . '" class="fa fa-trash-o btn btn-danger delete"></a></center></td>';
             echo "</tr>";
         }
         ?>

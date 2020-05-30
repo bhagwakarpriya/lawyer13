@@ -1,10 +1,10 @@
+
 <?php
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 ?><?php $this->load->view('header'); ?>
 <?php $this->load->view('topheader'); ?> 
 <!-- Start main-content -->
@@ -39,7 +39,7 @@
                                 <div class="row equal-height">
                                     <div class="col-sm-3 pr-0 pr-sm-15">
                                         <div class="thumb p-15">
-                                            <img style="width: 200px;height: 200px;" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val['lawyeridimage']; ?>" alt="...">
+                                            <img style="width: 200px;height: 200px;" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val['lawyer_id']['imagepath'] ?>" alt="...">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 border-right pl-0 pl-sm-15">

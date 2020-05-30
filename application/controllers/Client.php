@@ -15,13 +15,18 @@ class Client extends CI_Controller {
     }
 
     public function lawyerlist($categorie) {
-        $response = execute_data('tag/'.$categorie, '', 'GET');
+        $response = execute_data('tag/' . $categorie, '', 'GET');
+        $a = array();
+        foreach ($response['payload'] as $key => $value) {
+            $response1 = execute_data('lawyer/' . $value['lawyer_id'], '', 'GET');
+            $a[] = $response1;
+        }
         if (!is_array($response)) {
             echo "server not response";
         }
-        $data['lawyer'] = $response['payload'];
-        $this->load->view('lawyer', $data);
+        $data['lawyer'] = $a;
         $_SESSION['current_page'] = 'lawyer';
+        $this->load->view('lawyer_reco', $data);
     }
 
     public function cases() {
@@ -30,8 +35,8 @@ class Client extends CI_Controller {
             echo "server not response";
         }
         $data['clientcase'] = $response['payload'];
+        $_SESSION['current_page'] = 'profile';
         $this->load->view('clientcase', $data);
-        $_SESSION['current_page'] = 'Client Case';
     }
 
     public function registration() {

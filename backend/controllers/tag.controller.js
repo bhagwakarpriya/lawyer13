@@ -39,7 +39,7 @@ exports.getLawyerList = async (req,res) => {
         return Respond.badRequest("Missing client tag", [], res);
     }
     
-  let tagTextList ; 
+//   let tagTextList ; 
   Tag.find({tag: req.params.tag}, function(err, taglist) 
   {
      if (err)

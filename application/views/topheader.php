@@ -86,7 +86,7 @@
                                 }
                                 if (isset($_SESSION['usertype']) && trim($_SESSION['usertype']) == 'client') {
                                     ?>    
-                                    <li><a href="#">Profile</a>
+                                    <li class="<?php echo $_SESSION['current_page'] == 'profile' ? active : '' ?>"><a href="#">Profile</a>
                                         <ul class="dropdown">
                                             <li><a href="<?php echo base_url(); ?>Client/cases">MY Case</a></li>
                                             <li><a href="<?php echo base_url(); ?>Home/logout">Logout</a></li>
