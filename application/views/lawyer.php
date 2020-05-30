@@ -43,18 +43,18 @@
                             ?>
                             <div class="upcoming-events media maxwidth400 bg-light mb-20">
                                 <div class="row equal-height">
-                                    <div class="col-sm-4 pr-0 pr-sm-15">
+                                    <div class="col-sm-3 pr-0 pr-sm-15">
                                         <div class="thumb p-15">
-                                            <img style="width: 250px;height: 250px;" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="...">
+                                            <img style="width: 150px;height: 150px;" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="...">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4 border-right pl-0 pl-sm-15">
-                                        <div class="event-details p-15 mt-20">
+                                    <div class="col-sm-3 border-right">
+                                        <div class="event-details p-20 mt-20">
                                             <h4 class="media-heading text-uppercase font-weight-500"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h4>
                                             <a href="<?php echo base_url(); ?>Lawyer/profile/<?php echo $val['_id']; ?>" class="btn btn-dark btn-theme-colored btn-xs">View Full Profile <i class="fa fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <div class="event-count p-15 mt-15">
                                             <ul class="event-date list-inline font-16 text-uppercase mt-10 mb-20">
                                                 <li class="p-15 mr-5 bg-lightest"><?php echo date(M, strtotime($val['created'])) ?></li>
@@ -70,117 +70,11 @@
                             </div>
                             <?php
                         }
-                    }
+                    }  else { ?>
+                    <h3 class="text-theme-colored" style="text-align: center;">Lawyer not found</h3>    
+                   <?php  }
                     ?>
                 </div>
-                <!--                <div class="col-sm-12 col-md-9 blog-pull-right">
-                <?php
-                if (count($lawyer) > 0) {
-                    foreach ($lawyer as $key => $val) {
-                        ?>
-                                                                            <div class="upcoming-events media maxwidth400 bg-light mb-20">
-                                                                                <div class="row equal-height">
-                                                                                    <div class="col-sm-4 pr-0 pr-sm-15">
-                                                                                        <div class="thumb p-15">
-                                                                                            <img class="img-fullwidth" src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="...">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-sm-4 border-right pl-0 pl-sm-15">
-                                                                                        <div class="event-details p-15 mt-20">
-                                                                                            <h4 class="media-heading text-uppercase font-weight-500"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h4>
-                                                                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante Nulla vel metus scelerisque ante.</p>
-                                                                                            <a href="<?php echo base_url(); ?>Lawyer/profile/<?php echo $val['_id']; ?>" class="btn btn-dark btn-theme-colored btn-xs">View Full Profile <i class="fa fa-angle-double-right"></i></a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-sm-4">
-                                                                                        <div class="event-count p-15 mt-15">
-                                                                                            <ul class="event-date list-inline font-16 text-uppercase mt-10 mb-20">
-                                                                                                <li class="p-15 mr-5 bg-lightest"><?php echo date(M, strtotime($val['created'])) ?></li>
-                                                                                                <li class="p-15 pl-20 pr-20 mr-5 bg-lightest"> <?php echo date(d, strtotime($val['created'])) ?></li>
-                                                                                                <li class="p-15 bg-lightest"><?php echo date(Y, strtotime($val['created'])) ?></li>
-                                                                                            </ul>
-                                                                                            <ul>
-                                                                                                <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i> <?php echo $val['city']; ?> City.</li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                        <?php
-                    }
-                }
-                ?>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <nav>
-                                                <ul class="pagination pull-right xs-pull-center mb-xs-40">
-                                                    <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a> </li>
-                                                    <li class="active"><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li><a href="#">4</a></li>
-                                                    <li><a href="#">5</a></li>
-                                                    <li><a href="#">...</a></li>
-                                                    <li> <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a> </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-3">
-                                    <div class="sidebar sidebar-left mt-sm-30">
-                                        <div class="widget">
-                                            <h5 class="widget-title line-bottom">Archives</h5>
-                                            <ul class="list-divider list-border">
-                                                <li><a href="#"><i class="fa fa-check-square-o mr-10 text-black-light"></i> Vehicle Accidents</a></li>
-                                                <li><a href="#"><i class="fa fa-check-square-o mr-10 text-black-light"></i> Family Law</a></li>
-                                                <li><a href="#"><i class="fa fa-check-square-o mr-10 text-black-light"></i> Personal Injury</a></li>
-                                                <li><a href="#"><i class="fa fa-check-square-o mr-10 text-black-light"></i> Personal Injury</a></li>
-                                                <li><a href="#"><i class="fa fa-check-square-o mr-10 text-black-light"></i> Case Investigation</a></li>
-                                                <li><a href="#"><i class="fa fa-check-square-o mr-10 text-black-light"></i> Business Taxation</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="widget">
-                                            <h5 class="widget-title line-bottom">Twitter Feed</h5>
-                                            <div class="twitter-feed list-border clearfix" data-username="Envato"></div>
-                                        </div>
-                                        <div class="widget">
-                                            <h5 class="widget-title line-bottom">Image gallery with text</h5>
-                                            <div class="widget-image-carousel">
-                                                <div class="item">
-                                                    <img src="https://placehold.it/365x230" alt="">
-                                                    <h4 class="title">This is a Demo Title</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae illum amet illo.</p>
-                                                </div>
-                                                <div class="item">
-                                                    <img src="https://placehold.it/365x230" alt="">
-                                                    <h4 class="title">This is a Demo Title</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae illum amet illo.</p>
-                                                </div>
-                                                <div class="item">
-                                                    <img src="https://placehold.it/365x230" alt="">
-                                                    <h4 class="title">This is a Demo Title</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae illum amet illo.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="widget">
-                                            <h5 class="widget-title line-bottom">Tags</h5>
-                                            <div class="tags">
-                                                <a href="#">travel</a>
-                                                <a href="#">blog</a>
-                                                <a href="#">lifestyle</a>
-                                                <a href="#">feature</a>
-                                                <a href="#">mountain</a>
-                                                <a href="#">design</a>
-                                                <a href="#">restaurant</a>
-                                                <a href="#">journey</a>
-                                                <a href="#">classic</a>
-                                                <a href="#">sunset</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>   -->
             </div>
         </div>
     </section>

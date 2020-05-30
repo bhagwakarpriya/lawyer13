@@ -1,6 +1,6 @@
 <?php
 //echo '<pre>';
-//print_r($lawyerdetail);
+//print_r($tag);
 //die();
 $this->load->view('header');
 ?>
@@ -142,10 +142,10 @@ $this->load->view('header');
                                                             <select name="expertise" id ="expertise_select" class="form-control" data-validation="required"  tabindex="11">
                                                                 <option value="" disabled hidden selected>Select a Category</option>
                                                                 <?php
-                                                                if (count($specilization) > 0) {
-                                                                    foreach ($specilization as $key => $val) {
+                                                                if (count($tag) > 0) {
+                                                                    foreach ($tag as $key => $val) {
                                                                         ?>
-                                                                        <option value="<?php echo $val['tag']; ?>"><?php echo $val['tag']; ?></option>
+                                                                        <option value="<?php echo $val['text']; ?>"><?php echo $val['text']; ?></option>
                                                                     <?php }
                                                                 }
                                                                 ?>
@@ -177,10 +177,10 @@ $this->load->view('header');
                                                 <select name="secondaryexpertise" id ="secondaryexpertise" class="form-control" data-validation="required"  tabindex="14">
                                                     <option value="" disabled hidden selected>Select a Category</option>
                                                     <?php
-                                                    if (count($specilization) > 0) {
-                                                        foreach ($specilization as $key => $val) {
+                                                    if (count($tag) > 0) {
+                                                        foreach ($tag as $key => $val) {
                                                             ?>
-                                                    <option value="<?php echo $val['tag']; ?>" selected="<?php echo $val['tag']; ?>"><?php echo $val['tag']; ?></option>
+                                                    <option value="<?php echo $val['text']; ?>" selected="<?php echo $val['text']; ?>"><?php echo $val['text']; ?></option>
                                                         <?php }
                                                     }
                                                     ?>

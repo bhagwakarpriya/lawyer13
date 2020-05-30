@@ -6,10 +6,8 @@ const routes = express.Router();
 
 // controller
 const TAG = require('../controllers/tag.controller')
-
-
 routes.post('/create',[tagValidate.create],TAG.create);
-
 routes.post('/multi_create',[tagValidate.multiCreate],TAG.multi_create);
 routes.get('/',[],TAG.getTags);
+routes.get('/:tag',[],TAG.getLawyerList);
 module.exports = routes;

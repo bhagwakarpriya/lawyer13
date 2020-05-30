@@ -154,8 +154,8 @@ class Lawyer extends CI_Controller {
             echo json_encode($return);
             exit();
         }
-        $response = execute_data('specilization/', '', 'GET');
-        $data['specilization'] = $response['payload'];
+        $response = execute_data('tag/', '', 'GET');
+        $data['tag'] = $response['payload'];
         $response = execute_data('lawyer/' . $_SESSION['data']['id'], '', 'GET');
         $data['lawyerdetail']['lawyer_meta'] = $response['payload']['lawyer_meta'];
         $data['js'] = array(

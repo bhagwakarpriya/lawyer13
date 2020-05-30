@@ -55,6 +55,15 @@ class Home extends CI_Controller {
         $data['lawyer'] = $response['payload'];
         $response = execute_data('specilization/', '', 'GET');
         $data['specilization'] = $response['payload'];
+        $response = execute_data('tag/', '', 'GET');
+        $data['tag'] = $response['payload'];
+        $a = array();
+        foreach ($data['tag'] as $key => $value) {
+            if (!in_array($value['tag'], $a)) {
+                $a[] = $value['tag'];
+            }
+        }
+        $data['alltag']=$a;
         $this->load->view('home', $data);
     }
 
@@ -107,5 +116,4 @@ class Home extends CI_Controller {
         redirect(base_url());
     }
 
- 
 }

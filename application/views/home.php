@@ -96,10 +96,10 @@ $this->load->view('header');
                                  data-splitout="none" 
                                  data-responsive_offset="on"
                                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
-                                <?php if (isset($_SESSION['usertype']) && trim($_SESSION['usertype']) == 'client') { ?>    
-                                
-                                <a class="btn btn-dark btn-flat btn-theme-colored pl-20 pr-20 mt-sm-30" href="#SubmitYourMatter">Submit Your Matter</a> </div>
-                                <?php }?>
+                                     <?php if (isset($_SESSION['usertype']) && trim($_SESSION['usertype']) == 'client') { ?>    
+
+                                    <a class="btn btn-dark btn-flat btn-theme-colored pl-20 pr-20 mt-sm-30" href="#SubmitYourMatter">Submit Your Matter</a> </div>
+                            <?php } ?>
                         </li>
 
                     </ul>
@@ -272,81 +272,16 @@ $this->load->view('header');
                                     <div class="col-sm-12">
                                         <div class="form-group mb-10">
                                             <select name="categorie" class="form-control">
-                                                <option value="">Select a Category</option>
-                                                <option value="Administrative Law">Administrative Law</option>
-                                                <option value="Admiralty and Maritime">Admiralty and Maritime</option>
-                                                <option value="Adoption">Adoption</option>
-                                                <option value="Advertising">Advertising</option>
-                                                <option value="Animal Laws">Animal Laws</option>
-                                                <option value="Arbitration and Mediation">Arbitration and Mediation</option>
-                                                <option value="Aviation">Aviation</option>
-                                                <option value="Banking">Banking</option>
-                                                <option value="Bankruptcy and Debt">Bankruptcy and Debt</option>
-                                                <option value="Cheque Bounce">Cheque Bounce</option>
-                                                <option value="Child Custody">Child Custody</option>
-                                                <option value="Civil">Civil</option>
-                                                <option value="Commercial">Commercial</option>
-                                                <option value="Consumer Protection">Consumer Protection</option>
-                                                <option value="Contracts and Agreements">Contracts and Agreements</option>
-                                                <option value="Corporate and Incorporation">Corporate and Incorporation</option>
-                                                <option value="Criminal">Criminal</option>
-                                                <option value="Customs, Excise">Customs, Excise</option>
-                                                <option value="Cyber, Internet, Information Technology">Cyber, Internet, Information Technology</option>
-                                                <option value="Debt and Lending Agreement">Debt and Lending Agreement</option>
-                                                <option value="Debt Collection">Debt Collection</option>
-                                                <option value="Divorce">Divorce</option>
-                                                <option value="Documentation">Documentation</option>
-                                                <option value="Domestic Violence">Domestic Violence</option>
-                                                <option value="Election Campaign and Political Laws">Election Campaign and Political Laws</option>
-                                                <option value="Employment and Labour">Employment and Labour</option>
-                                                <option value="Environment and Natural Resources">Environment and Natural Resources</option>
-                                                <option value="Equipment Finance and Leasing">Equipment Finance and Leasing</option>
-                                                <option value="Family">Family</option>
-                                                <option value="Financial Markets and Services">Financial Markets and Services</option>
-                                                <option value="Government Contracts">Government Contracts</option>
-                                                <option value="Human Rights">Human Rights</option>
-                                                <option value="Immigration">Immigration</option>
-                                                <option value="Industrial Laws">Industrial Laws</option>
-                                                <option value="Insurance">Insurance</option>
-                                                <option value="Intellectual Property, Copyright, Patent, Trademark">Intellectual Property, Copyright, Patent, Trademark</option>
-                                                <option value="International Laws">International Laws</option>
-                                                <option value="IT Contracts">IT Contracts</option>
-                                                <option value="Juvenile">Juvenile</option>
-                                                <option value="Landlord and Tenant">Landlord and Tenant</option>
-                                                <option value="Licensing">Licensing</option>
-                                                <option value="Mail Fraud">Mail Fraud</option>
-                                                <option value="Maternity">Maternity</option>
-                                                <option value="Media, Communication, Entertainment">Media, Communication, Entertainment</option>
-                                                <option value="Mergers and Acquisition">Mergers and Acquisition</option>
-                                                <option value="Military Laws">Military Laws</option>
-                                                <option value="Motor Accident">Motor Accident</option>
-                                                <option value="Muslim Laws">Muslim Laws</option>
-                                                <option value="Oil and Gas">Oil and Gas</option>
-                                                <option value="Open Source Codes">Open Source Codes</option>
-                                                <option value="Outsourcing Agreement/Laws">Outsourcing Agreement/Laws</option>
-                                                <option value="Partnership">Partnership</option>
-                                                <option value="Police Laws">Police Laws</option>
-                                                <option value="Power of Attorney">Power of Attorney</option>
-                                                <option value="Privacy">Privacy</option>
-                                                <option value="Property">Property</option>
-                                                <option value="Real Estate">Real Estate</option>
-                                                <option value="Registration">Registration</option>
-                                                <option value="RTI">RTI</option>
-                                                <option value="Sale">Sale</option>
-                                                <option value="Sale of Goods">Sale of Goods</option>
-                                                <option value="Sex Crime">Sex Crime</option>
-                                                <option value="Sexual Harassment at Workplace">Sexual Harassment at Workplace</option>
-                                                <option value="Software License">Software License</option>
-                                                <option value="Sports Law">Sports Law</option>
-                                                <option value="Tax">Tax</option>
-                                                <option value="Tax-Property Tax">Tax-Property Tax</option>
-                                                <option value="Tax-Income Tax">Tax-Income Tax</option>
-                                                <option value="Telecommunication">Telecommunication</option>
-                                                <option value="Torts">Torts</option>
-                                                <option value="Transportation">Transportation</option>
-                                                <option value="Trust and Society (NGO)">Trust and Society (NGO)</option>
-                                                <option value="Work Permits">Work Permits</option>
-                                                <option value="Tax-GST">Tax-GST</option>
+                                                <option value="" disabled hidden selected>Select a Category</option>
+                                                <?php
+                                                if (count($alltag) > 0) {
+                                                    foreach ($alltag as $key => $val) {
+                                                        ?>
+                                                        <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                                    <?php
+                                                    }
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -378,7 +313,7 @@ $this->load->view('header');
                 </div>
             </div>
         </section>
-    <?php } ?>
+<?php } ?>
     <!--Divider: Testimonials 
    <section class="divider parallax layer-overlay" data-stellar-background-ratio="0.5" data-bg-img="<?php echo base_url() ?>fassets/images/bg/bg14.jpg">
  <div class="container">
@@ -391,13 +326,13 @@ $this->load->view('header');
         foreach ($lawyer as $key => $val) {
             if ($counter < 5) {
                 ?>  
-            <div class="item">
-            <div class="thumb"><img src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="" width="120" class="img-circle"></div>
-               <div class="content">
-                   <h5 class="text-theme-colored"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h5>
-                  <h6 class="title text-white">Developer</h6>
-               </div>
-               </div>
+                        <div class="item">
+                        <div class="thumb"><img src="<?php echo base_url(); ?>backend/images/lawyers/<?php echo $val[imagepath]; ?>" alt="" width="120" class="img-circle"></div>
+                           <div class="content">
+                               <h5 class="text-theme-colored"><?php echo $val['name']['first_name'] . " " . $val['name']['last_name']; ?></h5>
+                              <h6 class="title text-white">Developer</h6>
+                           </div>
+                           </div>
                 <?php
                 $counter++;
             } else {

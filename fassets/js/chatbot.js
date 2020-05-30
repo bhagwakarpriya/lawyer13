@@ -147,7 +147,13 @@ jQuery(function ($) {
 				//when ready, call 'ready' callback (passed as the second parameter)
 				console.log('convState.current.answer.value:', convState.current.answer);
 				if (convState.current.answer.value === 'end') {
-					convState.current.next = false;
+					//convState.current.next = false;
+					convState.current.next = convState.newState({
+						type: 'select',
+						name: 'dynamic-question-' + count,
+						questions: [qa.q],
+						answers: this.onInputSubmit.qa.a
+					});
 					//emulating random response time (100-600ms)
 					setTimeout(ready, Math.random() * 5000 + 100);
 				} else {

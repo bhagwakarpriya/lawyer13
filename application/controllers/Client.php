@@ -14,6 +14,16 @@ class Client extends CI_Controller {
         $_SESSION['current_page'] = 'lawyer';
     }
 
+    public function lawyerlist($categorie) {
+        $response = execute_data('tag/'.$categorie, '', 'GET');
+        if (!is_array($response)) {
+            echo "server not response";
+        }
+        $data['lawyer'] = $response['payload'];
+        $this->load->view('lawyer', $data);
+        $_SESSION['current_page'] = 'lawyer';
+    }
+
     public function cases() {
         $response = execute_data('case_detail/' . $_SESSION["data"]["id"], [], 'GET');
         if (!is_array($response)) {

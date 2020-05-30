@@ -8,8 +8,7 @@
                         <div class="modal-header">
                             <div class="row">
                                 <div class="col-md-6">Help for Case</div>
-                                <div class="col-md-6 text-right"><a id='close_chat' href="javascript:void(0)"><i
-                                            class="glyphicon glyphicon-minus hidden-xs text-right"></i></a></div>
+                                <div class="col-md-6 text-right"><a id='close_chat' href="javascript:void(0)"><i class="glyphicon glyphicon-minus hidden-xs text-right"></i></a></div>
                             </div>
                         </div>
                         <div id="chat_board" class="modal-body">
@@ -34,8 +33,7 @@
         </div>
     </div>
 </section>
-<!-- Footer -->
-<div class="multi-row-clearfix"></div>
+
 <footer id="footer" class="footer pb-0 bg-deep">
     <div class="row">
         <div class="col-md-12">

@@ -34,10 +34,7 @@ $this->load->view('topheader'); ?>
         </div>
         <div class="section-content">
           <div class="row">
-           <div class="row">
-        
-
-             
+           <div class="row">             
               <?php
                 if(count($specilization)>0){
                     foreach($specilization as $key=>$val){?>

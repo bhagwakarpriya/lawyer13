@@ -7,14 +7,13 @@ var CaseDetailSchema = mongoose.Schema({
     case_status: {type:Boolean,default:true},
     city: { type: String, required: true },
     case_title: { type: String, required: true },
+    categorie: { type: String, required: true },
     case_decription: { type: String, required: true },
     created: {
         type: Date,
         default: Date.now
     }
 });
-
-
 CaseDetailSchema
     .virtual('details')
     .get(function () {
@@ -23,6 +22,7 @@ CaseDetailSchema
             case_status: this.case_status,
             city: this.city,
             case_title: this.case_title,
+            categorie:this.categorie,
             case_decription: this.case_decription
         }
     });

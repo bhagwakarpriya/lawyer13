@@ -39,21 +39,25 @@ $this->load->view('topheader');
                                 <h3 class="icon-box-title pt-15 mt-0 mb-40"><?php echo $val['case_title']; ?></h3>
                                 <hr>
                                 <strong>ID : </strong><?php echo $val['_id']; ?><br>
-                                <strong>Posted On  : </strong><?php echo date("d-m-Y h:i:sa",  strtotime($val['created'])); ?><br>
-                                <?php if ($val['case_status'] == 'false'){  ?>                                    
-                                <strong>Status  : </strong> <span class="text-theme-colored">open</span>
-                                <?php }else { ?>
+                                <strong>Posted On  : </strong><?php echo date("d-m-Y h:i:sa", strtotime($val['created'])); ?><br>
+                                <?php if ($val['case_status'] == 'false') { ?>                                    
+                                    <strong>Status  : </strong> <span class="text-theme-colored">open</span>
+                                <?php } else { ?>
                                     <strong>Status  : </strong> <span class="text-theme-colored">Close</span>
                                 <?php } ?>
-                                <?php if ($val['case_decription'] != ''){  ?>                                    
-                                <br><strong>Case Detail : </strong>
-                                <p><?php echo $val['case_decription']; }?></p>
-                               
-                                <a class="btn btn-dark btn-xs mt-15" href="#">view Lawyers</a>
+                                <?php if ($val['case_decription'] != '') { ?>                                    
+                                    <br><strong>Case Detail : </strong>
+                                    <?php echo $val['case_decription'];
+                    } ?>
+<br>
+                                <a class="btn btn-dark btn-xs mt-15" href="<?php echo base_url().'Client/lawyerlist/'.$val['categorie'] ?>">view Lawyers</a>
                             </div>
                             <?php
                         }
-                    }
+                    } else {
+                        ?>
+                        <h3 class="text-theme-colored" style="text-align: center;">Case Deatil not found</h3>    
+                    <?php }
                     ?>
                 </div>
             </div>

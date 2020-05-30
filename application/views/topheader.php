@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                    
+
                     </div>
                     <!--login logout-->
                     <div class="col-md-9">
@@ -65,7 +65,7 @@
                     <nav>
                         <div id="menuzord" class="menuzord red"> <a class="menuzord-brand" href="javascript:void(0)"><img src="<?php echo base_url(); ?>fassets/images/logo-wide.png" alt=""></a>
                             <ul class="menuzord-menu">
-                                <li class="<?php echo $_SESSION['current_page'] =='home' ? active : '' ?>">
+                                <li class="<?php echo $_SESSION['current_page'] == 'home' ? active : '' ?>">
                                     <a href="<?php echo base_url(); ?>">Home</a>
                                 </li>
                                 <li class="<?php echo $_SESSION['current_page'] == 'lawyer' ? active : '' ?>">
@@ -88,7 +88,6 @@
                                     ?>    
                                     <li><a href="#">Profile</a>
                                         <ul class="dropdown">
-                                            <li><a href="<?php echo base_url(); ?>Client/editProfile">Edit Profile</a></li>                                            
                                             <li><a href="<?php echo base_url(); ?>Client/cases">MY Case</a></li>
                                             <li><a href="<?php echo base_url(); ?>Home/logout">Logout</a></li>
                                         </ul>

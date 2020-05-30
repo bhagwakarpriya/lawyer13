@@ -25,7 +25,6 @@ exports.casedetail = async (req, res) => {
     if (!req.params.id) {
         return Respond.badRequest("Missing client id", [], res);
     }
-    
     let casedetail = await CaseDetail.find({client_id:req.params.id});
     // console.log(casedetail);
     if (!casedetail) {

@@ -28,6 +28,27 @@ exports.multi_create = async (req, res) => {
 
 };
 
+exports.getLawyerList = async (req,res) => {
+    console.log(req.params.tag);
+    if (!req.params.tag) {
+        return Respond.badRequest("Missing client tag", [], res);
+    }
+    let cond = {};
+    if(req.params.tag){
+        cond['tag'] = req.params.tag; 
+    }
+
+    let tag = await Tag.find(cond);
+    console.log(tag);
+
+    if (!tag) {
+        return Respond.notFound("no data found", false, res);
+    }
+
+    return Respond.success("Tags found", tag, res);
+
+};
+
 exports.getTags = async (req,res) => {
     let cond = {};
     if(req.query.level){
@@ -36,7 +57,6 @@ exports.getTags = async (req,res) => {
     if(req.query.parent){
         cond['parent_tag'] = req.query.parent; 
     }
-
     let tags = await Tag.find(cond);
     console.log(tags);
 

@@ -32,5 +32,5 @@ exports.list = async (req,res) => {
     if (!specilizations) {
         return Respond.notFound("no data found", false, res);
     }
-    return Respond.success("Lawyer found", specilizations, res);
+    return Respond.success("Specilizations found", specilizations, res);
 };
