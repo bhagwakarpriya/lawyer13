@@ -84,11 +84,11 @@ class Client extends CI_Controller {
 
     public function caseDetail($id) {
         $_SESSION['current_page'] = 'Clients case detail';
-//        $response = execute_data('case_detail/'. $id,'', 'GET');
+        $response = execute_data('case_detail/'. $id,'', 'GET');
         if (!is_array($response)) {
             echo "server not response";
         }
-        $data['client'] = $response['payload'];
+        $data['clientcase'] = $response['payload'];
         $this->load->view('admin/clientcasedetail', $data);
     }
 

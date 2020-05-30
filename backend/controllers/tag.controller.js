@@ -2,6 +2,10 @@ const _ = require('lodash');
 const {
     Tag
 } = require('../models/tag.model')
+
+const {
+    LawyerMeta
+} = require('../models/lawyer_meta.model')
 const Respond = require('../helpers/resHelper');
 const hash = require('object-hash');
 
@@ -29,24 +33,28 @@ exports.multi_create = async (req, res) => {
 };
 
 exports.getLawyerList = async (req,res) => {
+    console.log("getLawyerList Function");
     console.log(req.params.tag);
     if (!req.params.tag) {
         return Respond.badRequest("Missing client tag", [], res);
     }
-    let cond = {};
-    if(req.params.tag){
-        cond['tag'] = req.params.tag; 
-    }
-
-    let tag = await Tag.find(cond);
-    console.log(tag);
-
-    if (!tag) {
+    
+  let tagTextList ; 
+  Tag.find({tag: req.params.tag}, function(err, taglist) 
+  {
+     if (err)
+    {
         return Respond.notFound("no data found", false, res);
     }
-
-    return Respond.success("Tags found", tag, res);
-
+    taglist.forEach(element => {         
+        console.log(element);                 
+        LawyerMeta.find({ "explist": { $regex: '.*' + element.text + '.*' } },
+        function(err,data){              
+            return Respond.success("Lawyer list found",data, res);                         
+       });
+      });  
+      
+ });
 };
 
 exports.getTags = async (req,res) => {
@@ -58,7 +66,7 @@ exports.getTags = async (req,res) => {
         cond['parent_tag'] = req.query.parent; 
     }
     let tags = await Tag.find(cond);
-    console.log(tags);
+    // console.log(tags);
 
     if (!tags) {
         return Respond.notFound("no data found", false, res);
