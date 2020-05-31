@@ -30,8 +30,7 @@ $(document).ready(function () {
   }
   function getTagsByParent(parent, callback) {
 	var url = chat_url + "/tags/" + parent;
-	consol;
-	e.log("Tag called:", url);
+	console.log("Tag called:", url);
   
 	return $.ajax({
 	  dataType: "json",
@@ -135,12 +134,16 @@ $(document).ready(function () {
   function getQuestionWithAns(level, parent) {
 	var tags = [];
 	var quest = getQuestion(level, 1).responseJSON;
-  
+	if(quest.length === 0) {
+		console.log("No question to display");
+		return false;
+	}
 	if (quest[0].has_option) {
 	  tags = getTagsByParent(parent).responseJSON;
 	  var resp = {
 		q: quest[0].question,
-		a: []
+		a: [],
+		o:true
 	  };
   
 	  for (var i = 0; i < tags.length; i++) {
@@ -158,6 +161,7 @@ $(document).ready(function () {
 			value: "",
 			parent: parent,
 		  }],
+		o:false,
 	  };
 	}
 	return resp;
@@ -200,7 +204,6 @@ $(document).ready(function () {
 			  //emulating random response time (100-600ms)
 			  setTimeout(ready, Math.random() * 5000 + 100);
 			}
-			console.log("i called ANS");
 			let qa = getQuestionWithAns(level, parent);
 			console.log("qa:", qa);
 			if (!qa) {
@@ -209,15 +212,18 @@ $(document).ready(function () {
 			  level = 0;
 			  setTimeout(ready, Math.random() * 5000 + 100);
 			}
-  
+
 			convState.current.next = convState.newState({
-			  type: "text",
+			  type: qa.o?"select": "text",
 			  name: "dynamic-question-" + count,
 			  questions: [qa.q],
 			  answers: qa.a,
 			});
+
 			//emulating random response time (100-600ms)
 			setTimeout(ready, Math.random() * 500 + 100);
+			
+			level++;
 		  }
 		  count++;
 		},
