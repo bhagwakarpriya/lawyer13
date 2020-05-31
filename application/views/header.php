@@ -84,5 +84,7 @@ error_reporting(0);
         ?>
         <script>
             var baseurl = "<?php echo base_url() ?>";
+            const chat_url = "<?php echo base_url('Chat') ?>";
+            
         </script>
     </head>
