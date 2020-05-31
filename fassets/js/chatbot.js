@@ -207,6 +207,14 @@ $(document).ready(function () {
 			let qa = getQuestionWithAns(level, parent);
 			console.log("qa:", qa);
 			if (!qa) {
+				var win = window.open(baseurl+'Lawyer', '_blank');
+				if (win) {
+					//Browser has allowed it to be opened
+					win.focus();
+				} else {
+					//Browser has blocked it
+					alert('Please allow popups for this website');
+				}
 			  convState.current.next = true;
 			  //emulating random response time (100-600ms)
 			  level = 0;
