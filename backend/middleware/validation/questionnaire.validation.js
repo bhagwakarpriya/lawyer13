@@ -9,7 +9,8 @@ const queCreateSchema = Joi.object({
     question : Joi.string().required(),
     question_type : Joi.boolean().required(),
     related_to : Joi.string().required(),
-    has_option:Joi.boolean().required()
+    has_option:Joi.boolean().required(),
+    validate_type:Joi.string()
 });
 
 exports.create = async(req,res,next) => {    

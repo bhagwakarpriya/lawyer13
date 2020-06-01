@@ -1,19 +1,19 @@
 //["only_alphanumaric", "only_string", "only_number", "only_date", "not_blank"];
 
 exports.only_alphanumaric = function (value) {
-
+ return value.match(/^[0-9a-zA-Z ]+$/);
 }
 
 exports.only_string = function (value) {
-
+  return value.match(/^[A-Za-z ]+$/);
 }
 
 exports.only_number = function (value) {
+  return value.match(/^[0-9]+$/);
+} 
 
-}
-
-exports.only_date = function (value) {
-
+exports.only_email = function (value) {
+  return value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 }
 
 exports.not_blank = function (value) {

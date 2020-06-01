@@ -5,7 +5,8 @@ var questionnaireSchema = mongoose.Schema({
     question_type:Boolean,
     related_to:String,
     has_option:Boolean,
-    level:Number
+    level:Number,
+    validate_type:String
 });
 
 var Questionnaire = mongoose.model("questionnaire", questionnaireSchema,"questionnaire");

@@ -11,7 +11,8 @@ exports.create = async (req, res) => {
         question_type:req.body.question_type,
         related_to:req.body.related_to,
         has_option:req.body.has_option,
-        level:req.body.level
+        level:req.body.level,
+        validate_type: !!req.body.validate_type?req.body.validate_type:"" 
     }
     let questionnaire = new Questionnaire(data);
     questionnaire = await questionnaire.save();
