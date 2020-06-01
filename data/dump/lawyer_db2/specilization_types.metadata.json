@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"lawyer_db2.specilization_types"}],"uuid":"46c7a6cfe31e4e209740e2c64c13bc6d"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"lawyer_db2.specilization_types"}],"uuid":"02b6dc9fec1247c3b6ef0e44ab909725"}
